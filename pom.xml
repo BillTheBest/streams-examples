@@ -66,16 +66,18 @@
 
     <modules>
         <!--<module>datasift-streaming-console</module>-->
-        <module>sysomos-mongo</module>
         <module>elasticsearch-backup</module>
         <module>elasticsearch-reindex</module>
         <module>elasticsearch-restore</module>
         <module>gmail-export-standalone</module>
-        <module>moreover-metabase-hdfs</module>
-        <module>hdfs-biohistory</module>
+        <!--<module>hdfs-biohistory</module>-->
         <!--<module>hdfs-converttoactivity</module>-->
         <!--<module>hdfs-urlunwind</module>-->
         <!--<module>hdfs-pullarticles</module>-->
+        <!--<module>instagram-timeline-console</module>-->
+        <module>mongo-elasticsearch-index</module>
+        <module>moreover-metabase-hdfs</module>
+        <module>sysomos-mongo</module>
         <module>twitter-gardenhose-elasticsearch</module>
         <module>twitter-gardenhose-dualwriter</module>
         <module>twitter-history-hdfs</module>

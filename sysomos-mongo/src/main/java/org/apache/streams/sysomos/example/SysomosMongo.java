@@ -8,7 +8,7 @@ import org.apache.streams.core.StreamBuilder;
 import org.apache.streams.core.StreamsDatum;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.apache.streams.mongo.MongoPersistWriter;
-import org.apache.streams.sysomos.org.apache.streams.sysomos.proessor.SysomosTypeConverter;
+import org.apache.streams.sysomos.processor.SysomosTypeConverter;
 import org.apache.streams.sysomos.provider.SysomosProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
