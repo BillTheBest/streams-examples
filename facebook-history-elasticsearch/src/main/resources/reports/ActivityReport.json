@@ -1,0 +1,597 @@
+{
+    "title": "Streams",
+    "editable": true,
+    "last": null,
+    "style": "light",
+    "services": {
+        "query": {
+            "idQueue": [],
+            "list": {
+                "0": {
+                    "query": "content:*",
+                    "alias": "",
+                    "color": "#7EB26D",
+                    "pin": false,
+                    "id": 0,
+                    "type": "lucene",
+                    "enable": true
+                },
+                "1": {
+                    "query": "entities.urls.expanded_url:*",
+                    "alias": "",
+                    "color": "#EAB839",
+                    "pin": false,
+                    "id": 1,
+                    "type": "lucene",
+                    "enable": true
+                },
+                "2": {
+                    "query": "extensions.w2o.urls.title:*",
+                    "alias": "",
+                    "color": "#6ED0E0",
+                    "pin": false,
+                    "id": 2,
+                    "type": "lucene",
+                    "enable": true
+                },
+                "3": {
+                    "query": "extensions.w2o.tags:*",
+                    "alias": "",
+                    "color": "#EF843C",
+                    "pin": false,
+                    "id": 3,
+                    "type": "lucene",
+                    "enable": true
+                }
+            },
+            "ids": [
+                0
+            ]
+        },
+        "filter": {
+            "idQueue": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+            ],
+            "list": {
+                "0": {
+                    "type": "time",
+                    "field": "published",
+                    "from": "now-3y",
+                    "to": "now",
+                    "mandate": "must",
+                    "active": true,
+                    "alias": "",
+                    "id": 0
+                }
+            },
+            "ids": [
+                0
+            ]
+        }
+    },
+    "index": {
+        "interval": "none",
+        "pattern": "userhistory_activity",
+        "default": "userhistory_activity",
+        "warm_fields": true
+    },
+    "rows": [
+        {
+            "title": "Control",
+            "height": "250px",
+            "editable": true,
+            "collapse": false,
+            "collapsable": true,
+            "panels": [
+                {
+                    "error": false,
+                    "span": 4,
+                    "editable": true,
+                    "type": "map",
+                    "loadingEditor": false,
+                    "map": "world",
+                    "colors": [
+                        "#A0E2E2",
+                        "#265656"
+                    ],
+                    "size": 100,
+                    "exclude": [],
+                    "spyable": true,
+                    "queries": {
+                        "mode": "all",
+                        "ids": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ]
+                    },
+                    "title": "",
+                    "field": "extensions.twitter.place.country_code"
+                },
+                {
+                    "error": false,
+                    "span": 4,
+                    "editable": true,
+                    "type": "map",
+                    "loadingEditor": false,
+                    "map": "europe",
+                    "colors": [
+                        "#A0E2E2",
+                        "#265656"
+                    ],
+                    "size": 100,
+                    "exclude": [],
+                    "spyable": true,
+                    "queries": {
+                        "mode": "all",
+                        "ids": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ]
+                    },
+                    "field": "extensions.twitter.place.country_code"
+                },
+                {
+                    "error": false,
+                    "span": 4,
+                    "editable": true,
+                    "type": "bettermap",
+                    "loadingEditor": false,
+                    "field": "extensions.location.coordinates.coordinates",
+                    "size": 1000,
+                    "spyable": true,
+                    "tooltip": "_id",
+                    "queries": {
+                        "mode": "all",
+                        "ids": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ]
+                    }
+                }
+            ],
+            "notice": true
+        },
+        {
+            "title": "Timeframe",
+            "height": "50px",
+            "editable": true,
+            "collapse": false,
+            "collapsable": true,
+            "panels": [
+                {
+                    "error": false,
+                    "span": 4,
+                    "editable": true,
+                    "type": "terms",
+                    "loadingEditor": false,
+                    "field": "extensions.twitter.entities.hashtags.text",
+                    "exclude": [],
+                    "missing": true,
+                    "other": true,
+                    "size": 10,
+                    "order": "count",
+                    "style": {
+                        "font-size": "10pt"
+                    },
+                    "donut": true,
+                    "tilt": false,
+                    "labels": true,
+                    "arrangement": "horizontal",
+                    "chart": "table",
+                    "counter_pos": "none",
+                    "spyable": true,
+                    "queries": {
+                        "mode": "all",
+                        "ids": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ]
+                    },
+                    "tmode": "terms",
+                    "tstat": "total",
+                    "valuefield": "",
+                    "title": "Hashtags"
+                },
+                {
+                    "error": false,
+                    "span": 4,
+                    "editable": true,
+                    "type": "terms",
+                    "loadingEditor": false,
+                    "field": "content",
+                    "exclude": [],
+                    "missing": true,
+                    "other": true,
+                    "size": 10,
+                    "order": "count",
+                    "style": {
+                        "font-size": "10pt"
+                    },
+                    "donut": false,
+                    "tilt": false,
+                    "labels": true,
+                    "arrangement": "horizontal",
+                    "chart": "table",
+                    "counter_pos": "above",
+                    "spyable": true,
+                    "queries": {
+                        "mode": "all",
+                        "ids": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ]
+                    },
+                    "tmode": "terms",
+                    "tstat": "total",
+                    "valuefield": "",
+                    "title": "Terms"
+                },
+                {
+                    "error": false,
+                    "span": 4,
+                    "editable": true,
+                    "type": "terms",
+                    "loadingEditor": false,
+                    "field": "extensions.twitter.entities.user_mentions.screen_name",
+                    "exclude": [],
+                    "missing": true,
+                    "other": true,
+                    "size": 10,
+                    "order": "count",
+                    "style": {
+                        "font-size": "10pt"
+                    },
+                    "donut": false,
+                    "tilt": false,
+                    "labels": true,
+                    "arrangement": "horizontal",
+                    "chart": "table",
+                    "counter_pos": "above",
+                    "spyable": true,
+                    "queries": {
+                        "mode": "all",
+                        "ids": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ]
+                    },
+                    "tmode": "terms",
+                    "tstat": "total",
+                    "valuefield": "",
+                    "title": "Mentions"
+                }
+            ],
+            "notice": false
+        },
+        {
+            "title": "Query",
+            "height": "50px",
+            "editable": true,
+            "collapse": false,
+            "collapsable": true,
+            "panels": [],
+            "notice": false
+        },
+        {
+            "title": "Filters",
+            "height": "50px",
+            "editable": true,
+            "collapse": false,
+            "collapsable": true,
+            "panels": [],
+            "notice": true
+        },
+        {
+            "title": "Graph",
+            "height": "350px",
+            "editable": true,
+            "collapse": false,
+            "collapsable": true,
+            "panels": [
+                {
+                    "loading": false,
+                    "span": 12,
+                    "editable": true,
+                    "group": [
+                        "default"
+                    ],
+                    "type": "histogram",
+                    "query": [
+                        {
+                            "query": "",
+                            "label": ""
+                        }
+                    ],
+                    "interval": "7d",
+                    "show": [
+                        "points",
+                        "lines",
+                        "legend",
+                        "x-axis",
+                        "y-axis"
+                    ],
+                    "timezone": "browser",
+                    "spyable": true,
+                    "zoomlinks": true,
+                    "fill": 0,
+                    "linewidth": 2,
+                    "bars": true,
+                    "stack": false,
+                    "points": false,
+                    "lines": false,
+                    "legend": true,
+                    "x-axis": true,
+                    "y-axis": true,
+                    "status": "Stable",
+                    "mode": "count",
+                    "value_field": null,
+                    "auto_int": true,
+                    "resolution": 100,
+                    "percentage": false,
+                    "interactive": true,
+                    "time_field": "published",
+                    "queries": {
+                        "mode": "all",
+                        "ids": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ]
+                    },
+                    "scale": 1,
+                    "y_format": "none",
+                    "grid": {
+                        "max": null,
+                        "min": 0
+                    },
+                    "annotate": {
+                        "enable": false,
+                        "query": "*",
+                        "size": 20,
+                        "field": "_type",
+                        "sort": [
+                            "_score",
+                            "desc"
+                        ]
+                    },
+                    "intervals": [
+                        "auto",
+                        "1s",
+                        "1m",
+                        "5m",
+                        "10m",
+                        "30m",
+                        "1h",
+                        "3h",
+                        "12h",
+                        "1d",
+                        "1w",
+                        "1y"
+                    ],
+                    "pointradius": 5,
+                    "options": true,
+                    "show_query": true,
+                    "legend_counts": true,
+                    "zerofill": true,
+                    "derivative": false,
+                    "tooltip": {
+                        "value_type": "cumulative",
+                        "query_as_alias": true
+                    }
+                }
+            ],
+            "notice": false
+        },
+        {
+            "title": "Tags",
+            "height": "150px",
+            "editable": true,
+            "collapse": true,
+            "collapsable": true,
+            "panels": [
+                {
+                    "error": false,
+                    "span": 6,
+                    "editable": true,
+                    "group": [
+                        "default"
+                    ],
+                    "type": "terms",
+                    "queries": {
+                        "mode": "all",
+                        "ids": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ]
+                    },
+                    "field": "text",
+                    "exclude": [],
+                    "missing": true,
+                    "other": true,
+                    "size": 25,
+                    "order": "count",
+                    "style": {
+                        "font-size": "10pt"
+                    },
+                    "donut": false,
+                    "tilt": false,
+                    "labels": true,
+                    "arrangement": "horizontal",
+                    "chart": "table",
+                    "counter_pos": "above",
+                    "spyable": true,
+                    "tmode": "terms",
+                    "tstat": "total",
+                    "valuefield": ""
+                }
+            ],
+            "notice": false
+        },
+        {
+            "title": "Events",
+            "height": "1000px",
+            "editable": true,
+            "collapse": false,
+            "collapsable": true,
+            "panels": [
+                {
+                    "loading": false,
+                    "error": false,
+                    "span": 12,
+                    "editable": true,
+                    "group": [
+                        "default"
+                    ],
+                    "type": "table",
+                    "query": "",
+                    "interval": "1y",
+                    "show": [
+                        "bars",
+                        "y-axis",
+                        "x-axis",
+                        "legend"
+                    ],
+                    "fill": 6,
+                    "overflow": "min-height",
+                    "timezone": "browser",
+                    "spyable": true,
+                    "zoomlinks": true,
+                    "size": 50,
+                    "pages": 10,
+                    "offset": 0,
+                    "sort": [
+                        "published",
+                        "desc"
+                    ],
+                    "style": {
+                        "font-size": "9pt"
+                    },
+                    "fields": [
+                        "published",
+                        "extensions.twitter.user.screen_name",
+                        "content"
+                    ],
+                    "sortable": true,
+                    "status": "Stable",
+                    "highlight": [],
+                    "header": true,
+                    "paging": true,
+                    "queries": {
+                        "mode": "all",
+                        "ids": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ]
+                    },
+                    "field_list": true,
+                    "trimFactor": 300,
+                    "normTimes": true,
+                    "all_fields": false,
+                    "localTime": true,
+                    "timeField": "published"
+                }
+            ],
+            "notice": false
+        }
+    ],
+    "failover": false,
+    "panel_hints": true,
+    "pulldowns": [
+        {
+            "type": "query",
+            "collapse": false,
+            "notice": false,
+            "enable": true,
+            "query": "*",
+            "pinned": true,
+            "history": [
+                "extensions.w2o.tags:*",
+                "extensions.w2o.urls.title:*",
+                "entities.urls.expanded_url:*",
+                "content:*",
+                "text:*"
+            ],
+            "remember": 10
+        },
+        {
+            "type": "filtering",
+            "collapse": false,
+            "notice": true,
+            "enable": true
+        }
+    ],
+    "nav": [
+        {
+            "type": "timepicker",
+            "collapse": false,
+            "notice": false,
+            "enable": true,
+            "status": "Stable",
+            "time_options": [
+                "5m",
+                "15m",
+                "1h",
+                "6h",
+                "12h",
+                "24h",
+                "2d",
+                "7d",
+                "30d",
+                "1y",
+                "3y"
+            ],
+            "refresh_intervals": [
+                "5s",
+                "10s",
+                "30s",
+                "1m",
+                "5m",
+                "15m",
+                "30m",
+                "1h",
+                "2h",
+                "1d"
+            ],
+            "timefield": "published",
+            "now": true,
+            "filter_id": 0
+        }
+    ],
+    "loader": {
+        "save_gist": false,
+        "save_elasticsearch": true,
+        "save_local": true,
+        "save_default": true,
+        "save_temp": true,
+        "save_temp_ttl_enable": true,
+        "save_temp_ttl": "30d",
+        "load_gist": false,
+        "load_elasticsearch": true,
+        "load_elasticsearch_size": 20,
+        "load_local": false,
+        "hide": false
+    },
+    "refresh": false
+}

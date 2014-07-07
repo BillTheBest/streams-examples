@@ -1,0 +1,22 @@
+{
+    "facebook": {
+        "oauth": {
+            "appId": "257919346142",
+            "appSecret": "deb18e34c1d0a2d6e002ac1a4cd6665c",
+            "appAccessToken": "257919346142|deb18e34c1d0a2d6e002ac1a4cd6665c",
+            "userAccessToken": "CAACEdEose0cBAJm4IiZADjQZBEZCSWoSvitrCQ57lLZCEypHsEwyKOT6JzpCM5PBFxUk0mfRchZABZCQXZCjrhwCv51CjfvTvEPbS7IVXFp96vUXXL7bigMKKBuu0lZAiNdyRGipxjybbG7x8JYRRdcy8dNq6IRfReEKW156BGAJxTaoLoks4ff0RBdG05ysMoIZD"
+        },
+        "info": [
+            "steveblackmon@me.com"
+        ]
+    },
+    "elasticsearch": {
+        "hosts": [
+            "localhost"
+        ],
+        "port": 9300,
+        "clusterName": "elasticsearch",
+        "index": "facebook_userhistory_activity",
+        "type": "activity"
+    }
+}
