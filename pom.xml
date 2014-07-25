@@ -68,6 +68,7 @@
         <!--<module>datasift-streaming-console</module>-->
         <module>elasticsearch-backup</module>
         <module>elasticsearch-reindex</module>
+        <module>elasticsearch-reserialize</module>
         <module>elasticsearch-restore</module>
         <module>gmail-export-standalone</module>
         <!--<module>hdfs-biohistory</module>-->
