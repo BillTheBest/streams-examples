@@ -2,8 +2,10 @@ package org.apache.streams.elasticsearch.example;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.typesafe.config.Config;
@@ -27,6 +29,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.*;
 
 /**
@@ -38,7 +41,7 @@ public class ElasticsearchReserialize {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(ElasticsearchReserialize.class);
 
-    private final static ObjectMapper streamsJacksonMapper = StreamsJacksonMapper.getInstance();
+    private final static ObjectMapper objectMapper = StreamsJacksonMapper.getInstance();
 
     protected ListeningExecutorService executor = MoreExecutors.listeningDecorator(newFixedThreadPoolWithQueueSize(5, 20));
 
@@ -67,7 +70,9 @@ public class ElasticsearchReserialize {
 
         Reserializer reserializer = new Reserializer();
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(1000));
+        Map<String, Object> streamConfig = Maps.newHashMap();
+        streamConfig.put(LocalStreamBuilder.TIMEOUT_KEY, 20 * 60 * 1000);
+        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(1000), streamConfig);
 
         builder.newPerpetualStream(ElasticsearchPersistReader.STREAMS_ID, elasticsearchPersistReader);
         builder.addStreamsProcessor(Reserializer.STREAMS_ID, reserializer, 2, ElasticsearchPersistReader.STREAMS_ID);
@@ -88,39 +93,68 @@ public class ElasticsearchReserialize {
 
             List<StreamsDatum> resultList = Lists.newArrayList();
 
+            ObjectNode original;
             Activity originalActivity;
             String originalJson;
 
-            String channel = null;
+            String root = null;
+            String extension = null;
             ObjectMapper mapper = null;
             ActivitySerializer serializer = null;
 
             try {
-                originalActivity = streamsJacksonMapper.convertValue(entry.getDocument(), Activity.class);
+                original = objectMapper.convertValue(entry.getDocument(), ObjectNode.class);
+                originalActivity = objectMapper.convertValue(entry.getDocument(), Activity.class);
 
-                if( originalActivity.getProvider().getId().contains("twitter")) {
-                    channel = "twitter";
+                if( originalActivity.getId().contains("datasift")) {
+                    extension = "datasift";
+                    mapper = StreamsJacksonMapper.getInstance();
+                    serializer = new DatasiftActivitySerializer();
+                } else if( originalActivity.getProvider().getId().contains("twitter")) {
+                    extension = "twitter";
                     mapper = StreamsTwitterMapper.getInstance();
                     serializer = new TwitterJsonActivitySerializer();
-                } else if( originalActivity.getProvider().getId().contains("datasift")) {
-                    channel = "datasift";
-                    mapper = streamsJacksonMapper;
-                    serializer = new DatasiftActivitySerializer();
                 }
 
-                Preconditions.checkNotNull(channel);
                 Preconditions.checkNotNull(mapper);
                 Preconditions.checkNotNull(serializer);
 
-                originalJson = mapper.writeValueAsString(originalActivity.getAdditionalProperties().get(channel));
+                ObjectNode obj = null;
+
+                if( root == null && extension == null ) {
+                    obj = mapper.convertValue(original, ObjectNode.class);
+                } else if( extension != null ) {
+                    Map<String, Object> extensions = (Map<String, Object>) originalActivity.getAdditionalProperties().get("extensions");
+                    obj = mapper.convertValue(extensions.get(extension), ObjectNode.class);
+                } else if( root != null ) {
+                    obj = mapper.convertValue(original.get(root), ObjectNode.class);
+                }
+
+                Preconditions.checkNotNull(obj);
+
+                originalJson = objectMapper.writeValueAsString(obj);
 
                 Activity resultDocument = null;
 
-                resultDocument = serializer.deserialize(originalJson);
+                String betterId = null;
+                if( extension.equals("datasift")) {
+                    Datasift ds = mapper.readValue(originalJson, Datasift.class);
+                    resultDocument = serializer.deserialize(ds);
+                    betterId = resultDocument.getId();
+                } if( extension.equals("twitter")) {
+                    resultDocument = serializer.deserialize(originalJson);
+                    betterId = resultDocument.getId();
+                } else {
+                    resultDocument = serializer.deserialize(originalJson);
+                }
 
                 Preconditions.checkNotNull(resultDocument);
 
                 StreamsDatum streamsDatum = new StreamsDatum(resultDocument, entry.getId(), entry.getTimestamp());
+
+                if( betterId != null ) {
+                    streamsDatum.setId(betterId);
+                }
 
                 resultList.add(streamsDatum);
 
@@ -130,7 +164,12 @@ public class ElasticsearchReserialize {
                 e.printStackTrace();
             } catch (ActivitySerializerException e) {
                 e.printStackTrace();
-            } finally {
+            } catch (Exception e) {
+                e.printStackTrace();
+            } catch(Error e){
+                e.printStackTrace();
+            } finally
+            {
                 return resultList;
             }
 

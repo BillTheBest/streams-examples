@@ -42,5 +42,5 @@ reindex {
 Running:
 --------
 
-    java -cp elasticsearch-reserialize-0.1-SNAPSHOT.jar -Dconfig.file=application.conf org.apache.streams.elastisearch.example.ElasticsearchReserialize
+    java -cp elasticsearch-reserialize-0.1-SNAPSHOT.jar -Dconfig.file=application.conf org.apache.streams.elasticsearch.example.ElasticsearchReserialize
 
