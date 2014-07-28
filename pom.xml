@@ -87,6 +87,7 @@
         <module>twitter-profiles-mongo</module>
         <module>twitter-userstream-console</module>
         <module>twitter-userstream-elasticsearch</module>
+        <module>instagram-recentmedia-console</module>
         <!--<module>twitter-usermetrics-elasticsearch</module>-->
     </modules>
 
