@@ -28,6 +28,7 @@ import org.apache.streams.twitter.processor.TwitterTypeConverter;
 import org.apache.streams.twitter.serializer.TwitterJsonActivitySerializer;
 import org.apache.streams.twitter.serializer.TwitterJsonTweetActivitySerializer;
 import org.apache.tools.ant.util.StringUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -40,6 +41,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class HdfsBiohistoryTest {
 
+    @Ignore
     @Test
     public void testHdfsBiohistory() throws Exception {
 

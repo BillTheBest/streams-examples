@@ -1,0 +1,51 @@
+{
+    "reindex": {
+        "source": {
+            "hosts": [
+                "localhost"
+            ],
+            "port": 9300,
+            "clusterName": "elasticsearch",
+            "indexes": [
+                "brand_twitteractivity"
+            ],
+            "types": [
+                "twitteractivity"
+            ],
+            "_search": {
+                "query" : {
+                    "filtered" : {
+                        "query" : {
+                            "match_all" : { }
+                        },
+                        "filter" : {
+                            "and" : {
+                                "filters" : [ {
+                                    "range" : {
+                                        "published" : {
+                                            "from" : 1402975600000,
+                                            "to" : 1403153999999,
+                                            "include_lower" : true,
+                                            "include_upper" : true
+                                        }
+                                    }
+                                } ]
+                            }
+                        }
+                    }
+                },
+                "_source" : true,
+                "fields" : [ "_timestamp" ]
+            }
+        },
+        "destination": {
+            "hosts": [
+                "localhost"
+            ],
+            "port": 9300,
+            "clusterName": "elasticsearch",
+            "index": "brand-reindex-range_twitteractivity",
+            "type": "twitteractivity"
+        }
+    }
+}
