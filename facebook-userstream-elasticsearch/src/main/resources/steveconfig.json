@@ -1,0 +1,19 @@
+{
+    "facebook": {
+        "oauth": {
+            "appId": "257919346142",
+            "appSecret": "deb18e34c1d0a2d6e002ac1a4cd6665c",
+            "appAccessToken": "257919346142|QMTqMsqsVBDFknGYMaqfjyw59H4",
+            "userAccessToken": "CAAAAPA0w5d4BAMjOLKKUUF6vusueYuIPvmUekp4UKAVbWGgoxBOliZAsDZAFWPsWYA1APz4JiIuty1BdlwMjBHurKZA1yhZCkLit09cBqyja6G6D2Hw3m7sGRzFEkZBgQqRWYZCwUqwFDX1BWMA6jRSfn7YZAwnv3WimT9JziCe1VEAWjouZBYm07f0Wbhxt5eGywTDxus8J4gZDZD"
+        }
+    },
+    "elasticsearch": {
+        "hosts": [
+            "localhost"
+        ],
+        "port": 9300,
+        "clusterName": "elasticsearch-mbp",
+        "index": "facebook_steveblackmon_activity",
+        "type": "activity"
+    }
+}
