@@ -1,0 +1,12 @@
+{
+    "type": "object",
+    "javaType" : "org.apache.streams.datasift.example.StreamsApiConfiguration",
+    "extends": {
+        "javaType": "io.dropwizard.Configuration",
+        "type": "object"
+    },
+    "properties": {
+        "elasticsearch": { "javaType": "org.apache.streams.elasticsearch.ElasticsearchWriterConfiguration", "type": "object", "required": false },
+        "datasift": { "javaType": "org.apache.streams.datasift.DatasiftConfiguration", "type": "object", "required": false }
+    }
+}
