@@ -61,18 +61,20 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.6</java.version>
+        <java.version>1.7</java.version>
     </properties>
 
     <modules>
-        <!--<module>datasift-streaming-console</module>-->
+        <module>datasift-console-elasticsearch</module>
+        <module>datasift-streaming-console</module>
         <module>elasticsearch-backup</module>
+        <module>elasticsearch-delete</module>
         <module>elasticsearch-reindex</module>
         <module>elasticsearch-reserialize</module>
         <module>elasticsearch-restore</module>
         <!--<module>facebook-friend-profiles</module>-->
-        <module>facebook-history-elasticsearch</module>
-        <module>facebook-userstream-elasticsearch</module>
+        <!--<module>facebook-history-elasticsearch</module>-->
+        <!--<module>facebook-userstream-elasticsearch</module>-->
         <module>gmail-export-standalone</module>
         <!--<module>hdfs-biohistory</module>-->
         <!--<module>hdfs-converttoactivity</module>-->
