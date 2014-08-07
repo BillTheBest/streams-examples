@@ -50,6 +50,10 @@
           <url>http://clojars.org/repo</url>
         </repository>
         <repository>
+            <id>sonatype</id>
+            <url>http://repository.sonatype.org/content/groups/public/</url>
+        </repository>
+        <repository>
             <id>cloudera</id>
             <url>https://repository.cloudera.com/artifactory/repo</url>
         </repository>
@@ -67,6 +71,8 @@
     <modules>
         <module>datasift-console-elasticsearch</module>
         <module>datasift-streaming-console</module>
+        <module>datasift-streaming-console</module>
+        <module>datasift-webhook</module>
         <module>elasticsearch-backup</module>
         <module>elasticsearch-delete</module>
         <module>elasticsearch-reindex</module>
