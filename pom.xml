@@ -70,7 +70,7 @@
 
     <modules>
         <module>datasift-console-elasticsearch</module>
-        <module>datasift-streaming-console</module>
+        <module>datasift-instagram-elasticsearch</module>
         <module>datasift-streaming-console</module>
         <module>datasift-webhook</module>
         <module>elasticsearch-backup</module>
