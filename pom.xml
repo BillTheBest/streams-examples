@@ -79,8 +79,8 @@
         <module>elasticsearch-reserialize</module>
         <module>elasticsearch-restore</module>
         <!--<module>facebook-friend-profiles</module>-->
-        <!--<module>facebook-history-elasticsearch</module>-->
-        <!--<module>facebook-userstream-elasticsearch</module>-->
+        <module>facebook-history-elasticsearch</module>
+        <module>facebook-userstream-elasticsearch</module>
         <module>gmail-export-standalone</module>
         <!--<module>hdfs-biohistory</module>-->
         <!--<module>hdfs-converttoactivity</module>-->

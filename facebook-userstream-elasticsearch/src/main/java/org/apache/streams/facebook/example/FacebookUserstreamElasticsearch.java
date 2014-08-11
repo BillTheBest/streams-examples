@@ -1,7 +1,7 @@
 package org.apache.streams.facebook.example;
 
-import com.facebook.processor.FacebookTypeConverter;
-import com.facebook.provider.FacebookUserstreamProvider;
+import org.apache.streams.facebook.processor.FacebookTypeConverter;
+import org.apache.streams.facebook.provider.FacebookUserstreamProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.typesafe.config.Config;

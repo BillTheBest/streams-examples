@@ -1,6 +1,6 @@
 package org.apache.streams.facebook.example;
 
-import com.facebook.provider.FacebookUserInformationProvider;
+import org.apache.streams.facebook.provider.FacebookUserInformationProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigRenderOptions;
