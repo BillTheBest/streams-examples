@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /**
- * HACK PROCESSOR.  Changes need to me made in apache streams to fix this issue long term.
+ * HACK PROCESSOR.  Changes need to be made in apache streams to fix this issue long term.
  */
 public class RemoveAdditionalPropertiesHackProcessor implements StreamsProcessor {
 
