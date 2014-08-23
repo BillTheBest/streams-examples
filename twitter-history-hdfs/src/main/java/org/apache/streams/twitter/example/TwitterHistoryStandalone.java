@@ -2,6 +2,7 @@ package org.apache.streams.twitter.example;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.typesafe.config.Config;
+import com.typesafe.config.ConfigRenderOptions;
 import org.apache.streams.config.StreamsConfigurator;
 import org.apache.streams.core.StreamsDatum;
 import org.apache.streams.hdfs.HdfsConfiguration;
@@ -12,6 +13,7 @@ import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.apache.streams.core.StreamBuilder;
 import org.apache.streams.pojo.json.Activity;
 import org.apache.streams.twitter.TwitterStreamConfiguration;
+import org.apache.streams.twitter.TwitterUserInformationConfiguration;
 import org.apache.streams.twitter.provider.TwitterStreamConfigurator;
 import org.apache.streams.twitter.provider.TwitterTimelineProvider;
 import org.slf4j.Logger;
@@ -33,7 +35,7 @@ public class TwitterHistoryStandalone {
         LOGGER.info(StreamsConfigurator.config.toString());
 
         Config twitter = StreamsConfigurator.config.getConfig("twitter");
-        TwitterStreamConfiguration twitterStreamConfiguration = TwitterStreamConfigurator.detectConfiguration(twitter);
+        TwitterUserInformationConfiguration twitterUserInformationConfiguration = mapper.convertValue(twitter.root().render(ConfigRenderOptions.concise()), TwitterUserInformationConfiguration.class);
 
         Config hdfs = StreamsConfigurator.config.getConfig("hdfs");
         HdfsConfiguration hdfsConfiguration = HdfsConfigurator.detectConfiguration(hdfs);
@@ -43,7 +45,7 @@ public class TwitterHistoryStandalone {
 
         StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>());
 
-        TwitterTimelineProvider provider = new TwitterTimelineProvider(twitterStreamConfiguration, Activity.class);
+        TwitterTimelineProvider provider = new TwitterTimelineProvider(twitterUserInformationConfiguration, Activity.class);
         WebHdfsPersistWriter writer = new WebHdfsPersistWriter(hdfsWriterConfiguration);
 
         builder.newReadCurrentStream("provider", provider);
