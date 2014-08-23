@@ -1,6 +1,6 @@
 package org.apache.streams.datasift.example;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.datasift.client.stream.StreamEventListener;
 import com.typesafe.config.Config;
 import org.apache.streams.config.StreamsConfigurator;
 import org.apache.streams.console.ConsolePersistWriter;
@@ -10,11 +10,6 @@ import org.apache.streams.datasift.DatasiftConfiguration;
 import org.apache.streams.datasift.provider.DatasiftStreamConfigurator;
 import org.apache.streams.datasift.provider.DatasiftStreamProvider;
 import org.apache.streams.local.builders.LocalStreamBuilder;
-import org.apache.streams.pojo.json.Activity;
-import org.apache.streams.twitter.TwitterStreamConfiguration;
-import org.apache.streams.twitter.processor.TwitterTypeConverter;
-import org.apache.streams.twitter.provider.TwitterStreamConfigurator;
-import org.apache.streams.twitter.provider.TwitterStreamProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,11 +32,11 @@ public class DatasiftStreamingConsole {
 
         StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(100));
 
-        DatasiftStreamProvider stream = new DatasiftStreamProvider(datasiftConfiguration);
+        DatasiftStreamProvider stream = new DatasiftStreamProvider(new DatasiftStreamProvider.DeleteHandler(), datasiftConfiguration);
         ConsolePersistWriter writer = new ConsolePersistWriter();
 
-        builder.newPerpetualStream(DatasiftStreamProvider.STREAMS_ID, stream);
-        builder.addStreamsPersistWriter(ConsolePersistWriter.STREAMS_ID, writer, 1, DatasiftStreamProvider.STREAMS_ID);
+        builder.newPerpetualStream("stream", stream);
+        builder.addStreamsPersistWriter("console", writer, 1, "stream");
         builder.start();
 
     }
