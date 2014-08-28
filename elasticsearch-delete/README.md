@@ -1,4 +1,4 @@
-elasticsearch-reindex
+elasticsearch-delete
 ==============================
 
 Requirements:

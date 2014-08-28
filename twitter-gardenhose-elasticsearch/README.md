@@ -5,8 +5,6 @@ Requirements:
 -------------
  - Authorized Twitter API credentials
  - A running ElasticSearch 1.0.0+ instance
- - 'head' plugin for ElasticSearch (`elasticsearch/bin/plugin -install mobz/elasticsearch-head`)
- - 'marvel' plugin for ElasticSearch (`elasticsearch/bin/plugin -install elasticsearch/marvel/latest`)
 
 Configuration:
 --------------
@@ -53,8 +51,7 @@ You will need to change the Twitter keys to reflect the contents your personal t
 Running:
 --------
 
-From within the virtual machine run:
-`java -cp target/twitter-gardenhose-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.twitter.example.TwitterGardenhoseElasticsearch`
+    java -cp target/twitter-gardenhose-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.twitter.example.TwitterGardenhoseElasticsearch
 
 Verification:
 -------------

@@ -21,8 +21,7 @@ You will need to include the username and password for the GMail account you wou
 Running:
 --------
 
-Once the configuration file has been completed this example can be run with:
-`java -cp target/gmail-export-standalone-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.gmail.example.GMailExportStandalone`
+    java -cp target/gmail-export-standalone-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.gmail.example.GMailExportStandalone
 
 Verification:
 -------------

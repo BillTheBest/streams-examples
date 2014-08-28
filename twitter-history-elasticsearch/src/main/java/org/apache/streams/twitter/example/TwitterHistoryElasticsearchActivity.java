@@ -12,6 +12,7 @@ import org.apache.streams.elasticsearch.ElasticsearchWriterConfiguration;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.apache.streams.pojo.json.Activity;
 import org.apache.streams.twitter.TwitterStreamConfiguration;
+import org.apache.streams.twitter.TwitterUserInformationConfiguration;
 import org.apache.streams.twitter.processor.TwitterTypeConverter;
 import org.apache.streams.twitter.provider.TwitterStreamConfigurator;
 import org.apache.streams.twitter.provider.TwitterTimelineProvider;
@@ -36,7 +37,7 @@ public class TwitterHistoryElasticsearchActivity {
         Config twitter = StreamsConfigurator.config.getConfig("twitter");
         Config elasticsearch = StreamsConfigurator.config.getConfig("elasticsearch");
 
-        TwitterStreamConfiguration twitterStreamConfiguration = TwitterStreamConfigurator.detectConfiguration(twitter);
+        TwitterUserInformationConfiguration twitterStreamConfiguration = TwitterStreamConfigurator.detectTwitterUserInformationConfiguration(twitter);
 
         ElasticsearchWriterConfiguration elasticsearchWriterConfiguration = ElasticsearchConfigurator.detectWriterConfiguration(elasticsearch);
 

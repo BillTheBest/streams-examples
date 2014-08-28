@@ -1,24 +1,33 @@
-facebook-history-elasticsearch
+twitter-history-elasticsearch
 ==============================
 
 Requirements:
 -------------
- - Authorized Facebook API credentials
+ - Authorized Twitter API credentials
  - A running ElasticSearch 1.0.0+ instance
 
 Description:
 ------------
-Polls an authorized user's feed and stores new activities in elasticsearch.
+Retrieves as many posts from a known list of users as twitter API allows.
+
+This example includes three separate jars: one for indexing tweets, one for indexing activities, and one for indexing retweets.
+Each of these jars require a corresponding configuration file that defines both Twitter and ElasticSearch preferences
 
 Example Configuration:
 ----------------------
 
-    facebook {
+    twitter {
+        host = "api.twitter.com"
+        endpoint = "statuses/user_timeline"
         oauth {
-            appId = ""
-            appSecret = ""
+            consumerKey = ""
+            consumerSecret = ""
             accessToken = ""
+            accessTokenSecret = ""
         }
+        follow = [
+            42232950
+        ]
     }
     elasticsearch {
         hosts = [
@@ -26,9 +35,12 @@ Example Configuration:
         ]
         port = 9300
         clusterName = elasticsearch
-        index = facebook_userstream_activity
+        index = userhistory_activity
         type = activity
     }
+
+In the Twitter section you should place all of your relevant authentication keys and whichever Twitter IDs you're looking to follow
+Twitter IDs can be converted from screennames at http://www.gettwitterid.com
 
 Running:
 --------

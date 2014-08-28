@@ -3,8 +3,14 @@ twitter-gardenhose-dualwriter
 
 Requirements:
 -------------
- - A running and configured instance of the Cloudera VM
- - A running instance of ElasticSearch
+ - Authorized Twitter API credentials
+ - A running ElasticSearch 1.0.0+ instance
+ - A running hadoop cluster
+ - A running HttpFs service
+
+Description:
+------------
+Listens for tweets, converts them to activities, and writes them in activity form to elasticsearch and raw form to HDFS
 
 Configuration:
 --------------
@@ -60,8 +66,7 @@ You will need to change the Twitter keys to reflect the contents your personal t
 Running:
 --------
 
-From within the virtual machine run:
-`java -cp target/twitter-gardenhose-dualwriter-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.twitter.example.TwitterGardenhoseDualWriter`
+    java -cp target/twitter-gardenhose-dualwriter-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.twitter.example.TwitterGardenhoseDualWriter
 
 Verification:
 -------------

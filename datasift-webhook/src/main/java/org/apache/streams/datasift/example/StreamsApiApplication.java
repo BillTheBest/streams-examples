@@ -15,10 +15,11 @@ import io.dropwizard.setup.Environment;
 import org.apache.streams.config.StreamsConfigurator;
 import org.apache.streams.core.StreamBuilder;
 import org.apache.streams.core.StreamsDatum;
+import org.apache.streams.datasift.processor.DatasiftTypeConverterProcessor;
 import org.apache.streams.datasift.provider.DatasiftPushProvider;
-import org.apache.streams.datasift.provider.DatasiftTypeConverterProcessor;
 import org.apache.streams.datasift.util.StreamsDatasiftMapper;
 import org.apache.streams.elasticsearch.ElasticsearchPersistWriter;
+import org.apache.streams.jackson.CleanAdditionalPropertiesProcessor;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.apache.streams.pojo.json.Activity;
 import org.slf4j.Logger;
@@ -90,7 +91,7 @@ public class StreamsApiApplication extends Application<StreamsApiConfiguration> 
             // prepare stream components
             builder.newPerpetualStream("webhooks", provider);
             builder.addStreamsProcessor("converter", new DatasiftTypeConverterProcessor(Activity.class), 2, "webhooks");
-            builder.addStreamsProcessor("RemoveAdditionalProperties", new RemoveAdditionalPropertiesHackProcessor(), 2, "converter");
+            builder.addStreamsProcessor("RemoveAdditionalProperties", new CleanAdditionalPropertiesProcessor(), 2, "converter");
             builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, writer, 1, "RemoveAdditionalProperties");
 
             builder.start();

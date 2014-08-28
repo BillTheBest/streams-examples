@@ -1,31 +1,41 @@
-datasift-console-elasticsearch
+datasift-instagram-elasticsearch
 ==============================
 
 Requirements:
 -------------
+ - An active datasift account
+ - An active datasift managed source
  - A running ElasticSearch 1.0.0+ instance
- - 'head' plugin for ElasticSearch (`elasticsearch/bin/plugin -install mobz/elasticsearch-head`)
- - 'marvel' plugin for ElasticSearch (`elasticsearch/bin/plugin -install mobz/elasticsearch-head`)
 
-This stream reads json lines piped in via console and write them to elasticsearch.
-
-This is useful if you want to perform a one-off data capture task and load the result to an index.
+Description:
+------------
+Connects to an active datasift stream, applies an Instagram serializer, and writes activities to elasticsearch.
 
 Example Configuration:
 ----------------------
 
-elasticsearch {
-    hosts = [
-        localhost
-    ]
-    port = 9300
-    clusterName = elasticsearch
-    index = index_activity
-    type = activity
-}
+    datasift {
+        apiKey = ""
+        userName = ""
+        streamHash = [
+            03ab029f120f989bf75b0b9b8f118467   
+        ]
+    }
+    elasticsearch {
+        hosts = [
+            localhost
+        ]
+        port = 9300
+        clusterName = elasticsearch
+        index = index_activity
+        type = activity
+    }
 
 Running:
 --------
 
-    cat json_export.txt | java -cp datasift-console-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=application.conf org.apache.streams.datasift.example.DatasiftConsoleElasticsearch
+    java -cp datasift-instagram-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=application.conf org.apache.streams.datasift.example.DatasiftInstagramElasticsearch
 
+Verification:
+-------------
+You should see documents being written to elasticsearch

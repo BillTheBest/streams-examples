@@ -45,7 +45,7 @@ Running:
 
 Once the configuration file has been completed this example can be run with:
 
-`java -cp target/twitter-userstream-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.twitter.example.TwitterUserstreamElasticsearch`
+    java -cp target/twitter-userstream-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.twitter.example.TwitterUserstreamElasticsearch
 
 Verification:
 -------------

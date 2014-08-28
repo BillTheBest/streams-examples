@@ -40,8 +40,8 @@ public class DatasiftStreamingConsole {
         DatasiftStreamProvider stream = new DatasiftStreamProvider(datasiftConfiguration);
         ConsolePersistWriter writer = new ConsolePersistWriter();
 
-        builder.newPerpetualStream(DatasiftStreamProvider.STREAMS_ID, stream);
-        builder.addStreamsPersistWriter(ConsolePersistWriter.STREAMS_ID, writer, 1, DatasiftStreamProvider.STREAMS_ID);
+        builder.newPerpetualStream("DatasiftStreamProvider", stream);
+        builder.addStreamsPersistWriter("ConsolePersistWriter", writer, 1, "DatasiftStreamProvider");
         builder.start();
 
     }

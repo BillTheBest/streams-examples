@@ -4,8 +4,12 @@ datasift-webhook
 Requirements:
 -------------
  - An active datasift account
+ - At least one active datasift stream
+ - A running ElasticSearch 1.0.0+ instance
 
-This example collects interaction messages received in real-time and archives them in elasticsearch
+Description:
+------------
+Collects interaction messages received in real-time and archives them in elasticsearch
 
 Example Configuration:
 ----------------------
@@ -58,5 +62,5 @@ Create a new recording or historics query, connecting your stream to your destin
 
 Verification:
 -------------
-Watch the posts pour in.
+You should see documents being written to elasticsearch
 
