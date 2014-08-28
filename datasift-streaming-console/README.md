@@ -10,6 +10,16 @@ Description:
 ------------
 This example connects to an active datasift stream and displays messages received in real-time
 
+Specification:
+-----------------
+
+[DatasiftStreamingConsole.dot](src/main/resources/DatasiftStreamingConsole.dot "DatasiftStreamingConsole.dot" )
+
+Diagram:
+-----------------
+
+![DatasiftStreamingConsole.png](./DatasiftStreamingConsole.png?raw=true)
+
 Example Configuration:
 ----------------------
 

@@ -29,6 +29,12 @@ Example Configuration:
 Running:
 --------
 
+Create your stream from the Datasift console.
+
+Execute the stream using Datasift storage.
+
+Download the result file as JSON.
+
     cat json_export.txt | java -cp datasift-console-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=application.conf org.apache.streams.datasift.example.DatasiftConsoleElasticsearch
 
 Verification:

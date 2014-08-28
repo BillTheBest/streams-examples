@@ -11,6 +11,16 @@ Description:
 ------------
 Connects to an active datasift stream, applies an Instagram serializer, and writes activities to elasticsearch.
 
+Specification:
+-----------------
+
+[DatasiftInstagramElasticsearch.dot](src/main/resources/DatasiftInstagramElasticsearch.dot "DatasiftInstagramElasticsearch.dot" )
+
+Diagram:
+-----------------
+
+![DatasiftInstagramElasticsearch.png](./DatasiftInstagramElasticsearch.png?raw=true)
+
 Example Configuration:
 ----------------------
 

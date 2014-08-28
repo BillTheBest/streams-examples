@@ -9,7 +9,17 @@ Requirements:
 
 Description:
 ------------
-Collects interaction messages received in real-time and archives them in elasticsearch
+Runs an HTTP webhook data destination and passes recieved documents through stream into elasticsearch
+
+Specification:
+-----------------
+
+[DatasiftWebhook.dot](src/main/resources/DatasiftWebhook.dot "DatasiftWebhook.dot" )
+
+Diagram:
+-----------------
+
+![DatasiftWebhook.png](./DatasiftWebhook.png?raw=true)
 
 Example Configuration:
 ----------------------
@@ -62,5 +72,5 @@ Create a new recording or historics query, connecting your stream to your destin
 
 Verification:
 -------------
-You should see documents being written to elasticsearch
+Once the historics task starts, you should see documents being written to elasticsearch
 
