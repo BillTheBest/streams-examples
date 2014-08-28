@@ -11,6 +11,16 @@ Description:
 ------------
 Copies documents from elasticsearch to HDFS.  Inverse of elasticsearch-restore.
 
+Specification:
+-----------------
+
+[ElasticsearchBackup.dot](src/main/resources/ElasticsearchBackup.dot "ElasticsearchBackup.dot" )
+
+Diagram:
+-----------------
+
+![ElasticsearchBackup.png](./ElasticsearchBackup.png?raw=true)
+
 Example Configuration:
 ----------------------
 

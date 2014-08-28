@@ -12,6 +12,16 @@ Reindexes activities (to a new index or in-place) and re-applies the appropriate
 
 This is useful when the serializer has been updated to a new version and your index contains documents build with an older version.
 
+Specification:
+-----------------
+
+[ElasticsearchReserialize.dot](src/main/resources/ElasticsearchReserialize.dot "ElasticsearchReserialize.dot" )
+
+Diagram:
+-----------------
+
+![ElasticsearchReserialize.png](./ElasticsearchReserialize.png?raw=true)
+
 Example Configuration:
 ----------------------
 

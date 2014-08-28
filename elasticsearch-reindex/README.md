@@ -5,6 +5,20 @@ Requirements:
 -------------
  - A running ElasticSearch 1.0.0+ instance
 
+Description:
+------------
+Copies documents into a different index
+
+Specification:
+-----------------
+
+[ElasticsearchReindex.dot](src/main/resources/ElasticsearchReindex.dot "ElasticsearchReindex.dot" )
+
+Diagram:
+-----------------
+
+![ElasticsearchReindex.png](./ElasticsearchReindex.png?raw=true)
+
 Example Configuration:
 ----------------------
 

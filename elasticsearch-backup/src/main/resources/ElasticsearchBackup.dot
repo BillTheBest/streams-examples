@@ -1,0 +1,17 @@
+digraph g {
+
+  //providers
+  ElasticsearchPersistReader [label="ElasticsearchPersistReader",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-elasticsearch/src/main/java/org/apache/streams/elasticsearch/ElasticsearchPersistReader.java"];
+
+  //persisters
+  WebHdfsPersistWriter [label="WebHdfsPersistWriter",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-persist-hdfs/src/main/java/org/apache/streams/hdfs/WebHdfsPersistWriter.java"];
+
+  //data
+  source [label="es://elasticsearch",shape=circle];
+  destination [label="hdfs://hdfs",shape=circle];
+
+  //stream
+  source -> ElasticsearchPersistReader
+  ElasticsearchPersistReader -> WebHdfsPersistWriter [label="String"];
+  WebHdfsPersistWriter -> destination
+}
