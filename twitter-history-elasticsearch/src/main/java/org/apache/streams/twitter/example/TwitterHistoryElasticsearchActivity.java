@@ -3,6 +3,7 @@ package org.apache.streams.twitter.example;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.typesafe.config.Config;
+import com.typesafe.config.ConfigRenderOptions;
 import org.apache.streams.config.StreamsConfigurator;
 import org.apache.streams.core.StreamBuilder;
 import org.apache.streams.core.StreamsDatum;
@@ -28,7 +29,7 @@ public class TwitterHistoryElasticsearchActivity {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(TwitterHistoryElasticsearchActivity.class);
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     public static void main(String[] args)
     {
@@ -37,11 +38,11 @@ public class TwitterHistoryElasticsearchActivity {
         Config twitter = StreamsConfigurator.config.getConfig("twitter");
         Config elasticsearch = StreamsConfigurator.config.getConfig("elasticsearch");
 
-        TwitterUserInformationConfiguration twitterStreamConfiguration = TwitterStreamConfigurator.detectTwitterUserInformationConfiguration(twitter);
+        TwitterUserInformationConfiguration twitterUserInformationConfiguration = mapper.convertValue(twitter.root().render(ConfigRenderOptions.concise()), TwitterUserInformationConfiguration.class);
 
         ElasticsearchWriterConfiguration elasticsearchWriterConfiguration = ElasticsearchConfigurator.detectWriterConfiguration(elasticsearch);
 
-        TwitterTimelineProvider provider = new TwitterTimelineProvider(twitterStreamConfiguration, ObjectNode.class);
+        TwitterTimelineProvider provider = new TwitterTimelineProvider(twitterUserInformationConfiguration, ObjectNode.class);
         TwitterTypeConverter converter = new TwitterTypeConverter(ObjectNode.class, Activity.class);
         ElasticsearchPersistWriter writer = new ElasticsearchPersistWriter(elasticsearchWriterConfiguration);
 
