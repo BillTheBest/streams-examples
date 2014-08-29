@@ -75,6 +75,7 @@
         <module>datasift-webhook</module>
         <module>elasticsearch-backup</module>
         <module>elasticsearch-delete</module>
+        <module>elasticsearch-directory</module>
         <module>elasticsearch-reindex</module>
         <module>elasticsearch-reserialize</module>
         <module>elasticsearch-restore</module>
