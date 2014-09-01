@@ -1,8 +1,8 @@
-package org.apache.streams.examples.intsagram.recentmedia;
+package org.apache.streams.instagram.example;
 
 import org.apache.streams.console.ConsolePersistWriter;
 import org.apache.streams.core.StreamBuilder;
-import org.apache.streams.instagram.provider.InstagramRecentMediaProvider;
+import org.apache.streams.instagram.provider.recentmedia.InstagramRecentMediaProvider;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 
 /**
