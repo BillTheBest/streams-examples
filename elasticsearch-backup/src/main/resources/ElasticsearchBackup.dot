@@ -7,8 +7,8 @@ digraph g {
   WebHdfsPersistWriter [label="WebHdfsPersistWriter",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-persist-hdfs/src/main/java/org/apache/streams/hdfs/WebHdfsPersistWriter.java"];
 
   //data
-  source [label="es://elasticsearch",shape=circle];
-  destination [label="hdfs://hdfs",shape=circle];
+  source [label="es://{indexes}/{types}",shape=box];
+  destination [label="hdfs://{path}/{writerPath}",shape=box];
 
   //stream
   source -> ElasticsearchPersistReader
