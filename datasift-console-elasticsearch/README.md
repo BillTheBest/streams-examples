@@ -13,6 +13,17 @@ Reads json lines piped in via console and write them to elasticsearch.
 
 This is useful if you want to perform a one-off data capture task and load the result to an index.
 
+Specification:
+-----------------
+
+[DatasiftConsoleElasticsearch.dot](src/main/resources/DatasiftConsoleElasticsearch.dot "DatasiftConsoleElasticsearch.dot" )
+
+Diagram:
+-----------------
+
+![DatasiftConsoleElasticsearch.png](./DatasiftConsoleElasticsearch.png?raw=true)
+
+
 Example Configuration:
 ----------------------
 
