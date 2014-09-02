@@ -24,34 +24,34 @@ Diagram:
 Example Configuration:
 ----------------------
 
-{
-    "backup": {
-        "source": {
-            "hosts": [
-                "localhost"
-            ],
-            "port": 9300,
-            "clusterName": "elasticsearch",
-            "indexes": [
-                "example_activity"
-            ],
-            "types": [
-                "activity"
-            ]
-        },
-        "destination": {
-            "host": "localhost",
-            "port": 50070,
-            "path": "/user/cloudera",
-            "user": "cloudera",
-            "pass": "cloudera",
-            "writerPath": "example_activity"
-        }
-    }
-}
+	 {
+	     "backup": {
+	         "source": {
+	             "hosts": [
+	                 "localhost"
+	             ],
+	             "port": 9300,
+	             "clusterName": "elasticsearch",
+	             "indexes": [
+	                 "example_activity"
+	             ],
+	             "types": [
+	                 "activity"
+	             ]
+	         },
+	         "destination": {
+	             "host": "localhost",
+	             "port": 50070,
+	             "path": "/user/cloudera",
+	             "user": "cloudera",
+	             "pass": "cloudera",
+	             "writerPath": "example_activity"
+	         }
+	     }
+	 }
 
 Running:
 --------
 
-`java -cp target/elasticsearch-backup-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.json org.apache.streams.twitter.example.TwitterHistoryElasticsearch{Tweet|Retweet|Activity}`
+	java -cp target/elasticsearch-backup-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.json org.apache.streams.elasticsearch.example.ElasticsearchBackup
 
