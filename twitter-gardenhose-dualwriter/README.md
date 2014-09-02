@@ -12,9 +12,18 @@ Description:
 ------------
 Listens for tweets, converts them to activities, and writes them in activity form to elasticsearch and raw form to HDFS
 
+Specification:
+-----------------
+
+[TwitterGardenhoseDualWriter.dot](src/main/resources/TwitterGardenhoseDualWriter.dot "TwitterGardenhoseDualWriter.dot" )
+
+Diagram:
+-----------------
+
+![TwitterGardenhoseDualWriter.png](./TwitterGardenhoseDualWriter.png?raw=true)
+
 Configuration:
 --------------
-    include "reference"
     twitter {
         endpoint = "sample"
         oauth {

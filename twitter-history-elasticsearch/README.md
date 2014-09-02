@@ -12,6 +12,16 @@ Retrieves as many posts from a known list of users as twitter API allows.
 
 Converts them to activities, and writes them in both raw and activity format to HDFS.
 
+Specification:
+-----------------
+
+[TwitterHistoryElasticsearch.dot](src/main/resources/TwitterHistoryElasticsearch.dot "TwitterGardenhoseElasticsearch.dot" )
+
+Diagram:
+-----------------
+
+![TwitterHistoryElasticsearch.png](./TwitterHistoryElasticsearch.png?raw=true)
+
 Example Configuration:
 ----------------------
 

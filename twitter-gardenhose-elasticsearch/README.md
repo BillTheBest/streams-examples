@@ -6,6 +6,20 @@ Requirements:
  - Authorized Twitter API credentials
  - A running ElasticSearch 1.0.0+ instance
 
+Description:
+------------
+Listens for tweets, converts them to activities, and writes them in activity form to elasticsearch
+
+Specification:
+-----------------
+
+[TwitterGardenhoseElasticsearch.dot](src/main/resources/TwitterGardenhoseElasticsearch.dot "TwitterGardenhoseElasticsearch.dot" )
+
+Diagram:
+-----------------
+
+![TwitterGardenhoseElasticsearch.png](./TwitterGardenhoseElasticsearch.png?raw=true)
+
 Configuration:
 --------------
     twitter {

@@ -10,6 +10,16 @@ Description:
 ------------
 Collects posts from heartbeat API, converts them to activities, and writes them to mongo
 
+Specification:
+-----------------
+
+[SysomosMongo.dot](src/main/resources/SysomosMongo.dot "SysomosMongo.dot" )
+
+Diagram:
+-----------------
+
+![SysomosMongo.png](./SysomosMongo.png?raw=true)
+
 Configuration:
 --------------
     include "reference"

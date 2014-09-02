@@ -12,9 +12,7 @@ import org.apache.streams.hdfs.WebHdfsPersistWriter;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.apache.streams.core.StreamBuilder;
 import org.apache.streams.pojo.json.Activity;
-import org.apache.streams.twitter.TwitterStreamConfiguration;
 import org.apache.streams.twitter.TwitterUserInformationConfiguration;
-import org.apache.streams.twitter.provider.TwitterStreamConfigurator;
 import org.apache.streams.twitter.provider.TwitterTimelineProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +22,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * Created by sblackmon on 12/10/13.
  */
-public class TwitterHistoryStandalone {
+public class TwitterHistoryHdfs {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(TwitterHistoryStandalone.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(TwitterHistoryHdfs.class);
 
     private final static ObjectMapper mapper = new ObjectMapper();
 

@@ -1,0 +1,21 @@
+digraph g {
+
+  //providers
+  TwitterTimelineProvider [label="TwitterTimelineProvider",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-twitter/src/main/java/org/apache/streams/twitter/provider/TwitterTimelineProvider.java"];
+
+  //processors
+  TwitterTypeConverter [label="TwitterTypeConverter",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-twitter/src/main/java/org/apache/streams/twitter/processor/TwitterTypeConverter.java"];
+  
+  //persisters
+  WebHdfsPersistWriter [label="WebHdfsPersistWriter",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-persist-hdfs/src/main/java/org/apache/streams/hdfs/WebHdfsPersistWriter.java"];
+  
+  //data
+  hdfs [label="hdfs://{path}/{writerPath}",shape=box];
+ 
+  //stream
+  TwitterTimelineProvider -> TwitterTypeConverter [label="ObjectNode"];
+  TwitterTypeConverter -> WebHdfsPersistWriter [label="Activity",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/activity.json"];
+  
+  WebHdfsPersistWriter -> hdfs [label="Activity",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/activity.json"];
+
+}
