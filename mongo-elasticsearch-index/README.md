@@ -10,6 +10,16 @@ Description:
 ------------
 Copies documents from mongo to elasticsearch
 
+Specification:
+-----------------
+
+[MongoElasticsearchIndex.dot](src/main/resources/MongoElasticsearchIndex.dot "MongoElasticsearchIndex.dot" )
+
+Diagram:
+-----------------
+
+![MongoElasticsearchIndex.png](./MongoElasticsearchIndex.png?raw=true)
+
 Example Configuration:
 ----------------------
 

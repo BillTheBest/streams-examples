@@ -10,6 +10,16 @@ Description:
 ------------
 Retrieves as many posts from a known list of users as twitter API allows.
 
+Specification:
+-----------------
+
+[FacebookHistoryElasticsearch.dot](src/main/resources/FacebookHistoryElasticsearch.dot "ElasticsearchReserialize.dot" )
+
+Diagram:
+-----------------
+
+![FacebookHistoryElasticsearch.png](./FacebookHistoryElasticsearch.png?raw=true)
+
 Example Configuration:
 ----------------------
 

@@ -26,7 +26,7 @@ import java.util.concurrent.*;
  */
 public class MongoElasticsearchIndex {
 
-    public final static String STREAMS_ID = "ElasticsearchReindex";
+    public final static String STREAMS_ID = "MongoElasticsearchIndex";
 
     private final static Logger LOGGER = LoggerFactory.getLogger(MongoElasticsearchIndex.class);
 

@@ -55,7 +55,7 @@ public class FacebookUserstreamElasticsearch {
 
         builder.newPerpetualStream(FacebookUserstreamProvider.STREAMS_ID, provider);
         builder.addStreamsProcessor("converter", converter, 2, FacebookUserstreamProvider.STREAMS_ID);
-        builder.addStreamsPersistWriter("console", writer, 1, "converter");
+        builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, writer, 1, "converter");
         builder.start();
 
     }

@@ -1,0 +1,16 @@
+digraph g {
+
+  //providers
+  MoreoverProvider [label="MoreoverProvider",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-moreover/src/main/java/org/apache/streams/data/moreover/MoreoverProvider.java"];
+
+  //persisters
+  ElasticsearchPersistWriter [label="ElasticsearchPersistWriter",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-persist-elasticsearch/src/main/java/org/apache/streams/elasticsearch/ElasticsearchPersistWriter.java"];
+
+  //data
+  destination [label="es://{index}/{type}",shape=box];
+ 
+  //stream
+  MoreoverProvider -> ElasticsearchPersistWriter [label="Moreover",URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-moreover/src/main/jsonschema/com/moreover/Moreover.json"];
+  ElasticsearchPersistWriter -> destination [label="Moreover",URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-moreover/src/main/jsonschema/com/moreover/Moreover.json"];
+
+}

@@ -4,7 +4,8 @@ twitter-history-hdfs
 Requirements:
 -------------
  - Authorized Twitter API credentials
- - A running ElasticSearch 1.0.0+ instance
+ - A running hadoop cluster
+ - A running HttpFs service
 
 Description:
 ------------

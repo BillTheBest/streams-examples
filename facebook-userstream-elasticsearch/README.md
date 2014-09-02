@@ -10,6 +10,16 @@ Description:
 ------------
 Polls an authorized user's feed and stores new activities in elasticsearch.
 
+Specification:
+-----------------
+
+[FacebookUserstreamElasticsearch.dot](src/main/resources/FacebookUserstreamElasticsearch.dot "ElasticsearchReserialize.dot" )
+
+Diagram:
+-----------------
+
+![FacebookUserstreamElasticsearch.png](./FacebookUserstreamElasticsearch.png?raw=true)
+
 Example Configuration:
 ----------------------
 

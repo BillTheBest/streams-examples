@@ -82,14 +82,17 @@
         <!--<module>facebook-friend-profiles</module>-->
         <module>facebook-history-elasticsearch</module>
         <module>facebook-userstream-elasticsearch</module>
-        <module>gmail-export-standalone</module>
+        <module>gmail-export-console</module>
         <!--<module>hdfs-biohistory</module>-->
         <!--<module>hdfs-converttoactivity</module>-->
         <!--<module>hdfs-urlunwind</module>-->
         <!--<module>hdfs-pullarticles</module>-->
+        <module>instagram-recentmedia-console</module>
         <!--<module>instagram-timeline-console</module>-->
         <module>mongo-elasticsearch-index</module>
+        <module>moreover-metabase-elasticsearch</module>
         <module>moreover-metabase-hdfs</module>
+        <module>moreover-metabase-dualwriter</module>
         <module>sysomos-mongo</module>
         <module>twitter-gardenhose-elasticsearch</module>
         <module>twitter-gardenhose-dualwriter</module>
@@ -99,7 +102,6 @@
         <module>twitter-profiles-mongo</module>
         <module>twitter-userstream-console</module>
         <module>twitter-userstream-elasticsearch</module>
-        <module>instagram-recentmedia-console</module>
         <!--<module>twitter-usermetrics-elasticsearch</module>-->
     </modules>
 

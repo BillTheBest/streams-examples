@@ -9,6 +9,16 @@ Description:
 ------------
 Retrieves new posts from a known list of users and writes to console.
 
+Specification:
+-----------------
+
+[InstagramRecentMediaConsole.dot](src/main/resources/InstagramRecentMediaConsole.dot "InstagramRecentMediaConsole.dot" )
+
+Diagram:
+-----------------
+
+![InstagramRecentMediaConsole.png](./InstagramRecentMediaConsole.png?raw=true)
+
 Example Configuration:
 ----------------------
 
