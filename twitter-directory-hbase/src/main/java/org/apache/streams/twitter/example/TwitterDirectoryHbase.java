@@ -1,6 +1,5 @@
 package org.apache.streams.twitter.example;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.typesafe.config.Config;
 import org.apache.streams.config.StreamsConfigurator;
 import org.apache.streams.core.StreamBuilder;
@@ -19,9 +18,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * Created by sblackmon on 12/10/13.
  */
-public class TwitterProfilesHbase {
+public class TwitterDirectoryHbase {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(TwitterProfilesHbase.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(TwitterDirectoryHbase.class);
 
     public static void main(String[] args)
     {

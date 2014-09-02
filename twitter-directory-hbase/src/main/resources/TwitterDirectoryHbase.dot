@@ -1,0 +1,22 @@
+digraph g {
+
+  //providers
+  TwitterStreamProvider [label="TwitterStreamProvider",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-twitter/src/main/java/org/apache/streams/twitter/provider/TwitterStreamProvider.java"];
+
+  //processors
+  TwitterProfileProcessor [label="TwitterProfileProcessor",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-twitter/src/main/java/org/apache/streams/twitter/processor/TwitterProfileProcessor.java"];
+  
+  //persisters
+  HbasePersistWriter [label="HbasePersistWriter",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-persist-hbase/src/main/java/org/apache/streams/hbase/HbasePersistWriter.java"];
+  
+  //data
+  hbase [label="hbase://{table}/{family}",shape=box];
+  
+  //stream
+  TwitterStreamProvider -> TwitterTypeConverter [label="ObjectNode"];
+  TwitterTypeConverter -> TwitterProfileProcessor [label="Activity",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/activity.json"]; 
+  TwitterTypeConverter -> HbasePersistWriter [label="Actor",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/object.json"];
+  
+  HbasePersistWriter -> hbase [label="Actor",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/object.json"];
+  
+}

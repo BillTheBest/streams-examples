@@ -79,7 +79,6 @@
         <module>elasticsearch-reindex</module>
         <module>elasticsearch-reserialize</module>
         <module>elasticsearch-restore</module>
-        <!--<module>facebook-friend-profiles</module>-->
         <module>facebook-history-elasticsearch</module>
         <module>facebook-userstream-elasticsearch</module>
         <module>gmail-export-console</module>
@@ -88,18 +87,17 @@
         <!--<module>hdfs-urlunwind</module>-->
         <!--<module>hdfs-pullarticles</module>-->
         <module>instagram-recentmedia-console</module>
-        <!--<module>instagram-timeline-console</module>-->
         <module>mongo-elasticsearch-index</module>
         <module>moreover-metabase-elasticsearch</module>
         <module>moreover-metabase-hdfs</module>
         <module>moreover-metabase-dualwriter</module>
         <module>sysomos-mongo</module>
+        <module>twitter-directory-hbase</module>
+        <module>twitter-directory-mongo</module>
         <module>twitter-gardenhose-elasticsearch</module>
         <module>twitter-gardenhose-dualwriter</module>
         <module>twitter-history-hdfs</module>
         <module>twitter-history-elasticsearch</module>
-        <module>twitter-profiles-hbase</module>
-        <module>twitter-profiles-mongo</module>
         <module>twitter-userstream-console</module>
         <module>twitter-userstream-elasticsearch</module>
         <!--<module>twitter-usermetrics-elasticsearch</module>-->

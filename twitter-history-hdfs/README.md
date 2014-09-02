@@ -14,6 +14,17 @@ Retrieves as many posts from a known list of users as twitter API allows.
 This example includes three classes: one for indexing tweets, one for indexing activities, and one for indexing retweets.
 Each of these jars require a corresponding configuration file that defines both Twitter and ElasticSearch preferences
 
+Specification:
+-----------------
+
+[TwitterHistoryHdfs.dot](src/main/resources/TwitterHistoryHdfs.dot "TwitterGardenhoseElasticsearch.dot" )
+
+Diagram:
+-----------------
+
+![TwitterHistoryHdfs.png](./TwitterHistoryHdfs.png?raw=true)
+
+
 Example Configuration:
 ----------------------
 
@@ -46,7 +57,7 @@ Twitter IDs can be converted from screennames at http://www.gettwitterid.com
 Running:
 --------
 
-    java -cp target/twitter-history-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.twitter.example.TwitterHistoryElasticsearchActivity
+    java -cp target/twitter-history-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.twitter.example.TwitterHistoryHdfsActivity
 
 Verification:
 -------------
