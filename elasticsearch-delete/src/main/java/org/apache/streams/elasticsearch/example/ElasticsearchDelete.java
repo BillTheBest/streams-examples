@@ -6,6 +6,7 @@ import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.typesafe.config.Config;
 import org.apache.streams.config.StreamsConfigurator;
+import org.apache.streams.console.ConsolePersistReader;
 import org.apache.streams.core.StreamsDatum;
 import org.apache.streams.elasticsearch.*;
 import org.apache.streams.core.StreamBuilder;
@@ -39,24 +40,18 @@ public class ElasticsearchDelete {
     {
         LOGGER.info(StreamsConfigurator.config.toString());
 
-        Config reindex = StreamsConfigurator.config.getConfig("reindex");
+        Config elasticsearch = StreamsConfigurator.config.getConfig("elasticsearch");
 
-        Config source = reindex.getConfig("source");
-        Config destination = reindex.getConfig("destination");
+        ConsolePersistReader console = new ConsolePersistReader();
+        ElasticsearchWriterConfiguration elasticsearchConfiguration = ElasticsearchConfigurator.detectWriterConfiguration(elasticsearch);
 
-        ElasticsearchReaderConfiguration elasticsearchSourceConfiguration = ElasticsearchConfigurator.detectReaderConfiguration(source);
-
-        ElasticsearchPersistReader elasticsearchPersistReader = new ElasticsearchPersistReader(elasticsearchSourceConfiguration);
-
-        ElasticsearchWriterConfiguration elasticsearchDestinationConfiguration = ElasticsearchConfigurator.detectWriterConfiguration(destination);
-
-        ElasticsearchPersistWriter elasticsearchPersistWriter = new ElasticsearchPersistDeleter(elasticsearchDestinationConfiguration);
+        ElasticsearchPersistDeleter elasticsearchPersistWriter = new ElasticsearchPersistDeleter(elasticsearchConfiguration);
 
         Map<String, Object> streamConfig = Maps.newHashMap();
         streamConfig.put(LocalStreamBuilder.TIMEOUT_KEY, 20 * 60 * 1000);
         StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(1000), streamConfig);
 
-        builder.newPerpetualStream(ElasticsearchPersistReader.STREAMS_ID, elasticsearchPersistReader);
+        builder.newPerpetualStream("console", console);
         builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, elasticsearchPersistWriter, 1, ElasticsearchPersistReader.STREAMS_ID);
         builder.start();
 

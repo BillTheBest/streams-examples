@@ -98,6 +98,7 @@
         <module>twitter-gardenhose-dualwriter</module>
         <module>twitter-history-hdfs</module>
         <module>twitter-history-elasticsearch</module>
+        <module>twitter-profiles-peoplepattern</module>
         <module>twitter-userstream-console</module>
         <module>twitter-userstream-elasticsearch</module>
         <!--<module>twitter-usermetrics-elasticsearch</module>-->

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>elasticsearch-delete</artifactId>
+    <artifactId>twitter-profiles-peoplepattern</artifactId>
 
     <dependencies>
         <dependency>
@@ -20,6 +20,7 @@
         <dependency>
             <groupId>com.typesafe</groupId>
             <artifactId>config</artifactId>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.streams</groupId>
@@ -33,6 +34,16 @@
         </dependency>
         <dependency>
             <groupId>org.apache.streams</groupId>
+            <artifactId>streams-provider-twitter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.streams</groupId>
+            <artifactId>streams-processor-peoplepattern</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.streams</groupId>
             <artifactId>streams-persist-console</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -40,16 +51,25 @@
             <groupId>org.apache.streams</groupId>
             <artifactId>streams-persist-elasticsearch</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback.version}</version>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>slf4j-log4j12</artifactId>-->
+                    <!--<groupId>org.slf4j</groupId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<groupId>log4j</groupId>-->
+                    <!--<artifactId>log4j</artifactId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>elasticsearch</artifactId>-->
+                    <!--<groupId>org.elasticsearch</groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch</groupId>-->
+            <!--<artifactId>elasticsearch</artifactId>-->
+            <!--<version>1.2.1</version>-->
         </dependency>
     </dependencies>
 
@@ -87,7 +107,7 @@
                                         implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.apache.streams.moreover.example.MoreoverMetabaseHdfs</mainClass>
+                                    <mainClass>org.apache.streams.twitter.example.TwitterProfilesMongo</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
