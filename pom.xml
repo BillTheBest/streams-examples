@@ -74,11 +74,13 @@
         <module>datasift-streaming-console</module>
         <module>datasift-webhook</module>
         <module>elasticsearch-backup</module>
-        <module>elasticsearch-delete</module>
+        <module>elasticsearch-delete-from-metadata-file</module>
         <module>elasticsearch-directory</module>
+        <module>elasticsearch-query-metadata-file</module>
         <module>elasticsearch-reindex</module>
         <module>elasticsearch-reserialize</module>
         <module>elasticsearch-restore</module>
+        <module>elasticsearch-provider-from-metadata-file</module>
         <module>facebook-history-elasticsearch</module>
         <module>facebook-userstream-elasticsearch</module>
         <module>gmail-export-console</module>

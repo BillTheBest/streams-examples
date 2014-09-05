@@ -15,31 +15,30 @@ Useful if you want the ability to add and modify profile metadata apart from the
 Example Configuration:
 ----------------------
 
-    include "reference"
-reindex {
-    source {
-        hosts = [
-            localhost
-        ]
-        port = 9300
-        clusterName = elasticsearch
-        indexes = [
-            userhistory_activity
-        ]
-        types = [
-            activity
-        ]
-    }
-    destination {
-        hosts = [
-            localhost
-        ]
-        port = 9300
-        clusterName = elasticsearch
-        index = directory_activity
-        type = activity
-    }
-}
+    reindex {
+             source {
+                 hosts = [
+                     localhost
+                 ]
+                 port = 9300
+                 clusterName = elasticsearch
+                 indexes = [
+                     userhistory_activity
+                 ]
+                 types = [
+                     activity
+                 ]
+             }
+             destination {
+                 hosts = [
+                     localhost
+                 ]
+                 port = 9300
+                 clusterName = elasticsearch
+                 index = directory_activity
+                 type = activity
+             }
+         }
 
 Running:
 --------

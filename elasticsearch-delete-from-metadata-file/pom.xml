@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>elasticsearch-delete</artifactId>
+    <artifactId>elasticsearch-delete-from-metadata-file</artifactId>
 
     <dependencies>
         <dependency>
@@ -87,7 +87,7 @@
                                         implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.apache.streams.moreover.example.MoreoverMetabaseHdfs</mainClass>
+                                    <mainClass>org.apache.streams.elasticsearch.example.ElasticsearchDelete</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
