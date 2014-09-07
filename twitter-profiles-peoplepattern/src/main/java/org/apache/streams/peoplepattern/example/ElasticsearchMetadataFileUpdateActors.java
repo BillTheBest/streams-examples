@@ -53,10 +53,10 @@ public class ElasticsearchMetadataFileUpdateActors implements Runnable {
         AccountTypeProcessor accountTypeProcessor = new AccountTypeProcessor();
         DemographicsProcessor demographicsProcessor = new DemographicsProcessor();
 
-        builder.newPerpetualStream("console", new ConsolePersistReader());
-        builder.addStreamsProcessor(MetadataAsDocumentProcessor.STREAMS_ID, new MetadataAsDocumentProcessor(), 1, "consolein");
+        builder.newReadCurrentStream("console", new ConsolePersistReader());
+        builder.addStreamsProcessor(MetadataAsDocumentProcessor.STREAMS_ID, new MetadataAsDocumentProcessor(), 1, "console");
         builder.addStreamsProcessor(DatumFromMetadataProcessor.STREAMS_ID, new DatumFromMetadataProcessor(elasticsearchReaderConfiguration), 1, MetadataAsDocumentProcessor.STREAMS_ID);
-        builder.addStreamsProcessor("accountTypeProcessor", accountTypeProcessor, 3, "provider");
+        builder.addStreamsProcessor("accountTypeProcessor", accountTypeProcessor, 3, DatumFromMetadataProcessor.STREAMS_ID);
         builder.addStreamsProcessor("demographicsProcessor", demographicsProcessor, 3, "accountTypeProcessor");
 
         builder.addStreamsPersistWriter("updater", elasticsearchPersistUpdater, 1, "demographicsProcessor");
