@@ -25,29 +25,27 @@ Example Configuration:
 ----------------------
 
 	 {
-	     "backup": {
-	         "source": {
-	             "hosts": [
-	                 "localhost"
-	             ],
-	             "port": 9300,
-	             "clusterName": "elasticsearch",
-	             "indexes": [
-	                 "example_activity"
-	             ],
-	             "types": [
-	                 "activity"
-	             ]
-	         },
-	         "destination": {
-	             "host": "localhost",
-	             "port": 50070,
-	             "path": "/user/cloudera",
-	             "user": "cloudera",
-	             "pass": "cloudera",
-	             "writerPath": "example_activity"
-	         }
-	     }
+	     "elasticsearch": {
+             "hosts": [
+                 "localhost"
+             ],
+             "port": 9300,
+             "clusterName": "elasticsearch",
+             "indexes": [
+                 "example_activity"
+             ],
+             "types": [
+                 "activity"
+             ]
+         },
+         "hdfs": {
+             "host": "localhost",
+             "port": 50070,
+             "path": "/user/cloudera",
+             "user": "cloudera",
+             "password": "cloudera",
+             "writerPath": "example_activity"
+         }
 	 }
 
 Running:

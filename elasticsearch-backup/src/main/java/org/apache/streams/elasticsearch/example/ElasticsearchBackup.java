@@ -23,9 +23,6 @@ public class ElasticsearchBackup {
 
     private final static ObjectMapper mapper = new ObjectMapper();
 
-    private static String index;
-    private static String type;
-
     public static void main(String[] args)
     {
         LOGGER.info(StreamsConfigurator.config.toString());
@@ -49,7 +46,7 @@ public class ElasticsearchBackup {
         StreamBuilder builder = new LocalStreamBuilder(new ConcurrentLinkedQueue<StreamsDatum>());
 
         builder.newPerpetualStream(ElasticsearchPersistReader.STREAMS_ID, elasticsearchReader);
-        builder.addStreamsPersistWriter(WebHdfsPersistReader.STREAMS_ID, hdfsWriter, 1, ElasticsearchPersistWriter.STREAMS_ID);
+        builder.addStreamsPersistWriter(WebHdfsPersistWriter.STREAMS_ID, hdfsWriter, 1, ElasticsearchPersistReader.STREAMS_ID);
         builder.start();
 
     }
