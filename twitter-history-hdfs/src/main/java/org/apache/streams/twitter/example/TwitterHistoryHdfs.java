@@ -13,6 +13,7 @@ import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.apache.streams.core.StreamBuilder;
 import org.apache.streams.pojo.json.Activity;
 import org.apache.streams.twitter.TwitterUserInformationConfiguration;
+import org.apache.streams.twitter.provider.TwitterConfigurator;
 import org.apache.streams.twitter.provider.TwitterTimelineProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +34,7 @@ public class TwitterHistoryHdfs {
         LOGGER.info(StreamsConfigurator.config.toString());
 
         Config twitter = StreamsConfigurator.config.getConfig("twitter");
-        TwitterUserInformationConfiguration twitterUserInformationConfiguration = mapper.convertValue(twitter.root().render(ConfigRenderOptions.concise()), TwitterUserInformationConfiguration.class);
+        TwitterUserInformationConfiguration twitterUserInformationConfiguration = TwitterConfigurator.detectTwitterUserInformationConfiguration(twitter);
 
         Config hdfs = StreamsConfigurator.config.getConfig("hdfs");
         HdfsConfiguration hdfsConfiguration = HdfsConfigurator.detectConfiguration(hdfs);

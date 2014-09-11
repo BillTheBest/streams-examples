@@ -34,9 +34,10 @@ Example Configuration:
             accessToken = ""
             accessTokenSecret = ""
         }
-        follow = [
-            42232950
-        ]
+        info = [
+            "42232950"
+            "211620426"
+        ]
     }
     elasticsearch {
         hosts = [
@@ -56,11 +57,13 @@ Running:
 
 You will need to run `./install_templates.sh` in the resources folder in order to apply the templates to your ES cluster
 
-    java -cp target/twitter-history-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.twitter.example.TwitterHistoryElasticsearchActivity
+    java -cp target/twitter-history-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=application.conf org.apache.streams.twitter.example.TwitterHistoryElasticsearchActivity
+
+Note that you must modify src/main/resources/application.conf, and supply an absolute path to config.file
 
 Verification:
 -------------
-Open up http://localhost:9200/_plugin/head/ and confirm that all three indices now have data in them
+Open up http://localhost:9200/_plugin/head/ and confirm that the index you specified now contains has data
 
 Download https://github.com/w2ogroup/streams-examples/blob/master/twitter-history-elasticsearch/src/main/resources/reports/ActivityReport.json
 

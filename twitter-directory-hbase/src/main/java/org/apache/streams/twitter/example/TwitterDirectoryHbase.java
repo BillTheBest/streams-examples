@@ -8,7 +8,7 @@ import org.apache.streams.hbase.HbasePersistWriter;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.apache.streams.twitter.TwitterStreamConfiguration;
 import org.apache.streams.twitter.processor.TwitterProfileProcessor;
-import org.apache.streams.twitter.provider.TwitterStreamConfigurator;
+import org.apache.streams.twitter.provider.TwitterConfigurator;
 import org.apache.streams.twitter.provider.TwitterStreamProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +28,7 @@ public class TwitterDirectoryHbase {
 
         Config twitter = StreamsConfigurator.config.getConfig("twitter");
 
-        TwitterStreamConfiguration twitterStreamConfiguration = TwitterStreamConfigurator.detectConfiguration(twitter);
+        TwitterStreamConfiguration twitterStreamConfiguration = TwitterConfigurator.detectTwitterStreamConfiguration(twitter);
 
         TwitterStreamProvider provider = new TwitterStreamProvider(twitterStreamConfiguration);
         TwitterProfileProcessor profile = new TwitterProfileProcessor();
