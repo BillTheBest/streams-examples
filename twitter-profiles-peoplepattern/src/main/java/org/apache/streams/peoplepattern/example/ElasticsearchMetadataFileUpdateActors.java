@@ -8,7 +8,7 @@ import org.apache.streams.core.StreamBuilder;
 import org.apache.streams.core.StreamsDatum;
 import org.apache.streams.elasticsearch.*;
 import org.apache.streams.elasticsearch.processor.DatumFromMetadataProcessor;
-import org.apache.streams.elasticsearch.processor.MetadataAsDocumentProcessor;
+import org.apache.streams.elasticsearch.processor.DatumFromMetadataAsDocumentProcessor;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.apache.streams.peoplepattern.AccountTypeProcessor;
 import org.apache.streams.peoplepattern.DemographicsProcessor;
@@ -54,8 +54,8 @@ public class ElasticsearchMetadataFileUpdateActors implements Runnable {
         DemographicsProcessor demographicsProcessor = new DemographicsProcessor();
 
         builder.newReadCurrentStream("console", new ConsolePersistReader());
-        builder.addStreamsProcessor(MetadataAsDocumentProcessor.STREAMS_ID, new MetadataAsDocumentProcessor(), 1, "console");
-        builder.addStreamsProcessor(DatumFromMetadataProcessor.STREAMS_ID, new DatumFromMetadataProcessor(elasticsearchReaderConfiguration), 1, MetadataAsDocumentProcessor.STREAMS_ID);
+        builder.addStreamsProcessor(DatumFromMetadataAsDocumentProcessor.STREAMS_ID, new DatumFromMetadataAsDocumentProcessor(), 1, "console");
+        builder.addStreamsProcessor(DatumFromMetadataProcessor.STREAMS_ID, new DatumFromMetadataProcessor(elasticsearchReaderConfiguration), 1, DatumFromMetadataAsDocumentProcessor.STREAMS_ID);
         builder.addStreamsProcessor("accountTypeProcessor", accountTypeProcessor, 3, DatumFromMetadataProcessor.STREAMS_ID);
         builder.addStreamsProcessor("demographicsProcessor", demographicsProcessor, 3, "accountTypeProcessor");
 
