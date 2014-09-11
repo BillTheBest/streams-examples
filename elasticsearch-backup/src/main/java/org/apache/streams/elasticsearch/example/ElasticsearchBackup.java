@@ -1,13 +1,18 @@
 package org.apache.streams.elasticsearch.example;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
 import com.typesafe.config.Config;
 import org.apache.streams.config.StreamsConfigurator;
 import org.apache.streams.core.StreamBuilder;
 import org.apache.streams.core.StreamsDatum;
-import org.apache.streams.elasticsearch.*;
-import org.apache.streams.hdfs.*;
+import org.apache.streams.elasticsearch.ElasticsearchConfiguration;
+import org.apache.streams.elasticsearch.ElasticsearchConfigurator;
+import org.apache.streams.elasticsearch.ElasticsearchPersistReader;
+import org.apache.streams.elasticsearch.ElasticsearchReaderConfiguration;
+import org.apache.streams.hdfs.HdfsConfiguration;
+import org.apache.streams.hdfs.HdfsConfigurator;
+import org.apache.streams.hdfs.HdfsWriterConfiguration;
+import org.apache.streams.hdfs.WebHdfsPersistWriter;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,8 +35,6 @@ public class ElasticsearchBackup {
         Config elasticsearch = StreamsConfigurator.config.getConfig("elasticsearch");
         ElasticsearchConfiguration elasticsearchConfiguration = ElasticsearchConfigurator.detectConfiguration(elasticsearch);
         ElasticsearchReaderConfiguration elasticsearchReaderConfiguration  = mapper.convertValue(elasticsearchConfiguration, ElasticsearchReaderConfiguration.class);
-        elasticsearchReaderConfiguration.setIndexes(Lists.newArrayList(index + "_" + type));
-        elasticsearchReaderConfiguration.setTypes(Lists.newArrayList(type));
 
         ElasticsearchPersistReader elasticsearchReader = new ElasticsearchPersistReader(elasticsearchReaderConfiguration);
 
@@ -39,7 +42,6 @@ public class ElasticsearchBackup {
         HdfsConfiguration hdfsConfiguration = HdfsConfigurator.detectConfiguration(hdfs);
 
         HdfsWriterConfiguration hdfsWriterConfiguration  = mapper.convertValue(hdfsConfiguration, HdfsWriterConfiguration.class);
-        hdfsWriterConfiguration.setWriterPath(index + "/esbackup/" + index + "/" + type);
 
         WebHdfsPersistWriter hdfsWriter = new WebHdfsPersistWriter(hdfsWriterConfiguration);
 

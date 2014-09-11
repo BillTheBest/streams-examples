@@ -1,4 +1,4 @@
-elasticsearch-query
+elasticsearch-query-metadata-file
 ==============================
 
 Requirements:

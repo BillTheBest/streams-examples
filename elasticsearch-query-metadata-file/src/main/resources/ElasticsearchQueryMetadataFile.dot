@@ -1,0 +1,11 @@
+digraph g {
+  
+  //providers
+  ElasticsearchPersistReader [label="ElasticsearchPersistReader",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-persist-elasticsearch/src/main/java/org/apache/streams/elasticsearch/ElasticsearchPersistReader.java"];
+
+  //persisters
+  ConsolePersistWriter [label="ConsolePersistWriter",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-persist-console/src/main/java/org/apache/streams/console/ConsolePersistWriter.java"];
+  
+  //stream
+  ElasticsearchPersistReader -> ConsolePersistWriter [label="String"];
+}

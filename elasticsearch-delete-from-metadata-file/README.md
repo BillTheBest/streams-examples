@@ -1,9 +1,10 @@
-elasticsearch-delete
+elasticsearch-delete-from-metadata-file
 ==============================
 
 Requirements:
 -------------
  - A running ElasticSearch 1.0.0+ instance
+ - A file containing the metadata of documents to delete
 
 Example Configuration:
 ----------------------
