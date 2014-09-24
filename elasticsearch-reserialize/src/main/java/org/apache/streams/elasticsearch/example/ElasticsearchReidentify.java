@@ -25,13 +25,13 @@ import java.util.Map;
 import java.util.concurrent.*;
 
 /**
- * Created by sblackmon on 12/10/13.
+ * Created by steveblackmon on 9/24/14.
  */
-public class ElasticsearchReserialize {
+public class ElasticsearchReidentify {
 
-    public final static String STREAMS_ID = "ElasticsearchReserialize";
+    public final static String STREAMS_ID = "ElasticsearchReidentify";
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(ElasticsearchReserialize.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(ElasticsearchReidentify.class);
 
     private final static ObjectMapper objectMapper = StreamsJacksonMapper.getInstance();
 
@@ -62,7 +62,7 @@ public class ElasticsearchReserialize {
 
         CleanAdditionalPropertiesProcessor cleanAdditionalPropertiesProcessor = new CleanAdditionalPropertiesProcessor();
 
-        Reserializer reserializer = new Reserializer();
+        Reidentifier reidentifier = new Reidentifier();
 
         Map<String, Object> streamConfig = Maps.newHashMap();
         streamConfig.put(LocalStreamBuilder.TIMEOUT_KEY, 20 * 60 * 1000);
@@ -70,20 +70,20 @@ public class ElasticsearchReserialize {
 
         builder.newPerpetualStream(ElasticsearchPersistReader.STREAMS_ID, elasticsearchPersistReader);
         builder.addStreamsProcessor("CleanAdditionalPropertiesProcessor", cleanAdditionalPropertiesProcessor, 2, ElasticsearchPersistReader.STREAMS_ID);
-        builder.addStreamsProcessor(Reserializer.STREAMS_ID, reserializer, 2, "CleanAdditionalPropertiesProcessor");
-        builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, elasticsearchPersistWriter, 1, Reserializer.STREAMS_ID);
+        builder.addStreamsProcessor(Reidentifier.STREAMS_ID, reidentifier, 2, "CleanAdditionalPropertiesProcessor");
+        builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, elasticsearchPersistWriter, 1, Reidentifier.STREAMS_ID);
         builder.start();
 
     }
 
-    public static class Reserializer implements StreamsProcessor {
+    public static class Reidentifier implements StreamsProcessor {
 
-        public Reserializer() {
+        public Reidentifier() {
         }
 
         ObjectMapper mapper = null;
 
-        public final static String STREAMS_ID = "Reserializer";
+        public final static String STREAMS_ID = "Reidentifier";
 
         @Override
         public List<StreamsDatum> process(StreamsDatum entry) {
@@ -127,5 +127,4 @@ public class ElasticsearchReserialize {
 
         }
     }
-
 }

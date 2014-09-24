@@ -25,24 +25,22 @@ Example Configuration:
 ----------------------
 
     {
-        "restore": {
-            "source": {
-                "host": "localhost",
-                "port": 50070,
-                "path": "/user/cloudera",
-                "user": "cloudera",
-                "pass": "cloudera",
-                "readerPath": "example_activity"
-            },
-            "destination": {
-                "hosts": [
-                    "localhost"
-                ],
-                "port": 9300,
-                "clusterName": "elasticsearch",
-                "index": "example_activity",
-                "type": "activity"
-            }
+        "hdfs": {
+            "host": "localhost",
+            "port": 50070,
+            "path": "/user/cloudera",
+            "user": "cloudera",
+            "password": "cloudera",
+            "readerPath": "example_activity"
+        },
+        "elasticsearch": {
+            "hosts": [
+                "localhost"
+            ],
+            "port": 9300,
+            "clusterName": "elasticsearch",
+            "index": "example_activity",
+            "type": "activity"
         }
     }
 
