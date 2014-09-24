@@ -100,6 +100,7 @@
         <module>twitter-history-elasticsearch</module>
         <module>twitter-userstream-console</module>
         <module>twitter-userstream-elasticsearch</module>
+        <module>twitter-userstream-links-elasticsearch</module>
         <!--<module>twitter-usermetrics-elasticsearch</module>-->
     </modules>
 

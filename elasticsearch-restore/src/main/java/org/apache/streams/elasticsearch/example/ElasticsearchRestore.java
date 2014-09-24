@@ -34,8 +34,6 @@ public class ElasticsearchRestore {
     {
         LOGGER.info(StreamsConfigurator.config.toString());
 
-        detectConfiguration();
-
         Config hdfs = StreamsConfigurator.config.getConfig("hdfs");
 
         HdfsReaderConfiguration hdfsReaderConfiguration  = HdfsConfigurator.detectReaderConfiguration(hdfs);
@@ -57,18 +55,5 @@ public class ElasticsearchRestore {
         builder.start();
 
     }
-
-    private static void detectConfiguration() {
-
-        Config elasticsearch = StreamsConfigurator.config.getConfig("elasticsearch");
-
-        Config restore = elasticsearch.getConfig("restore");
-
-        index = restore.getString("index");
-
-        type = restore.getString("type");
-
-    }
-
 
 }

@@ -6,7 +6,11 @@ digraph g {
   //processors
   TwitterTypeConverter [label="TwitterTypeConverter",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-twitter/src/main/java/org/apache/streams/twitter/processor/TwitterTypeConverter.java"];
   
-  LinkUnwinderProcessor [label="LinkUnwinderProcessor",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-processor-url/src/main/java/org/apache/streams/twitter/processor/LinkUnwinderProcessor.java"];
+  LinkResolverProcessor [label="LinkResolverProcessor",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-processor-url/src/main/java/org/apache/streams/twitter/processor/LinkResolverProcessor.java"];
+  
+  WebPageProcessor [label="WebPageProcessor",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-processor-url/src/main/java/org/apache/streams/urls/processor/WebPageProcessor.java"];
+  
+  LinkExpanderProcessor [label="LinkExpanderProcessor",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-processor-url/src/main/java/org/apache/streams/twitter/processor/LinkExpanderProcessor.java"];
   
   TwitterUrlApiProcessor [label="TwitterUrlApiProcessor",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-twitter/src/main/java/org/apache/streams/twitter/processor/TwitterUrlApiProcessor.java"];
   
@@ -18,8 +22,10 @@ digraph g {
   
   //stream
   TwitterStreamProvider -> TwitterTypeConverter [label="ObjectNode"];
-  TwitterTypeConverter -> LinkUnwinderProcessor [label="Activity",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/activity.json"];
-  LinkUnwinderProcessor -> TwitterUrlApiProcessor [label="Activity",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/activity.json"];
+  TwitterTypeConverter -> LinkResolverProcessor [label="Activity",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/activity.json"];
+  LinkResolverProcessor -> WebPageProcessor [label="Activity",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/activity.json"];
+  WebPageProcessor -> LinkExpanderProcessor [label="Activity",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/activity.json"];
+  LinkExpanderProcessor -> TwitterUrlApiProcessor [label="Activity",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/activity.json"];
   TwitterUrlApiProcessor -> ElasticsearchPersistWriter [label="Activity",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/activity.json"];
   
   ElasticsearchPersistWriter -> es [label="Activity",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/activity.json"];

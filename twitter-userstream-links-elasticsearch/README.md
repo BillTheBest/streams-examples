@@ -1,4 +1,4 @@
-twitter-userstream-elasticsearch
+twitter-userstream-links-elasticsearch
 ==============================
 
 Requirements:
@@ -10,17 +10,17 @@ Requirements:
 
 Description:
 ------------
-This example connects to an active twitter account and stores the userstream as activities in Elasticsearch
+This example connects to an active twitter account, extracts all links shared, and stores raw content and useful metadata in Elasticsearch
 
 Specification:
 -----------------
 
-[TwitterUserstreamElasticsearch.dot](src/main/resources/TwitterUserstreamElasticsearch.dot "TwitterUserstreamElasticsearch.dot" )
+[TwitterUserstreamLinksElasticsearch.dot](src/main/resources/TwitterUserstreamLinksElasticsearch.dot "TwitterUserstreamLinksElasticsearch.dot" )
 
 Diagram:
 -----------------
 
-![TwitterUserstreamElasticsearch.png](./TwitterUserstreamElasticsearch.png?raw=true)
+![TwitterUserstreamLinksElasticsearch.png](./TwitterUserstreamLinksElasticsearch.png?raw=true)
 
 Example Configuration:
 ----------------------

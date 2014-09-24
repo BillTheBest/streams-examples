@@ -31,25 +31,19 @@ public class ElasticsearchBackup {
         LOGGER.info(StreamsConfigurator.config.toString());
 
         Config elasticsearch = StreamsConfigurator.config.getConfig("elasticsearch");
-        ElasticsearchConfiguration elasticsearchConfiguration = ElasticsearchConfigurator.detectConfiguration(elasticsearch);
-        ElasticsearchReaderConfiguration elasticsearchReaderConfiguration  = mapper.convertValue(elasticsearchConfiguration, ElasticsearchReaderConfiguration.class);
-        elasticsearchReaderConfiguration.setIndexes(Lists.newArrayList(index + "_" + type));
-        elasticsearchReaderConfiguration.setTypes(Lists.newArrayList(type));
+        ElasticsearchReaderConfiguration elasticsearchConfiguration = ElasticsearchConfigurator.detectReaderConfiguration(elasticsearch);
 
-        ElasticsearchPersistReader elasticsearchReader = new ElasticsearchPersistReader(elasticsearchReaderConfiguration);
+        ElasticsearchPersistReader elasticsearchReader = new ElasticsearchPersistReader(elasticsearchConfiguration);
 
         Config hdfs = StreamsConfigurator.config.getConfig("hdfs");
-        HdfsConfiguration hdfsConfiguration = HdfsConfigurator.detectConfiguration(hdfs);
+        HdfsWriterConfiguration hdfsConfiguration = HdfsConfigurator.detectWriterConfiguration(hdfs);
 
-        HdfsWriterConfiguration hdfsWriterConfiguration  = mapper.convertValue(hdfsConfiguration, HdfsWriterConfiguration.class);
-        hdfsWriterConfiguration.setWriterPath(index + "/esbackup/" + index + "/" + type);
-
-        WebHdfsPersistWriter hdfsWriter = new WebHdfsPersistWriter(hdfsWriterConfiguration);
+        WebHdfsPersistWriter hdfsWriter = new WebHdfsPersistWriter(hdfsConfiguration);
 
         StreamBuilder builder = new LocalStreamBuilder(new ConcurrentLinkedQueue<StreamsDatum>());
 
         builder.newPerpetualStream(ElasticsearchPersistReader.STREAMS_ID, elasticsearchReader);
-        builder.addStreamsPersistWriter(WebHdfsPersistReader.STREAMS_ID, hdfsWriter, 1, ElasticsearchPersistWriter.STREAMS_ID);
+        builder.addStreamsPersistWriter(WebHdfsPersistReader.STREAMS_ID, hdfsWriter, 1, ElasticsearchPersistReader.STREAMS_ID);
         builder.start();
 
     }
