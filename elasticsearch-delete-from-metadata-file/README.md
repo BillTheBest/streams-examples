@@ -10,29 +10,18 @@ Example Configuration:
 ----------------------
 
 {
-    "reindex": {
-        "source": {
-            "hosts": [
-                "localhost"
-            ],
-            "port": 9300,
-            "clusterName": "elasticsearch",
-            "indexes": [
-                "brand_twitteractivity"
-            ],
-            "types": [
-                "twitteractivity"
-            ]
-        },
-        "destination": {
-            "hosts": [
-                "localhost"
-            ],
-            "port": 9300,
-            "clusterName": "elasticsearch",
-            "index": "brand-reindex-range_twitteractivity",
-            "type": "twitteractivity"
-        }
+    "elasticsearch": {
+        "hosts": [
+            "localhost"
+        ],
+        "port": 9300,
+        "clusterName": "elasticsearch",
+        "indexes": [
+            "brand_twitteractivity"
+        ],
+        "types": [
+            "twitteractivity"
+        ]
     }
 }
 
