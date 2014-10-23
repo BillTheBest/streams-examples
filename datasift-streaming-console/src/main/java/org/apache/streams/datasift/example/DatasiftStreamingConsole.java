@@ -30,7 +30,7 @@ public class DatasiftStreamingConsole {
 
         DatasiftConfiguration datasiftConfiguration = DatasiftStreamConfigurator.detectConfiguration(datasift);
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(100));
+        StreamBuilder builder = new LocalStreamBuilder(100);
 
         DatasiftStreamProvider stream = new DatasiftStreamProvider(new DatasiftStreamProvider.DeleteHandler(), datasiftConfiguration);
         ConsolePersistWriter writer = new ConsolePersistWriter();

@@ -53,7 +53,7 @@ public class FacebookFriendFeedElasticsearch {
         ElasticsearchWriterConfiguration elasticsearchWriterConfiguration = ElasticsearchConfigurator.detectWriterConfiguration(elasticsearch);
         ElasticsearchPersistWriter writer = new ElasticsearchPersistWriter(elasticsearchWriterConfiguration);
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>());
+        StreamBuilder builder = new LocalStreamBuilder();
 
         builder.newPerpetualStream(FacebookFriendFeedProvider.STREAMS_ID, provider);
         builder.addStreamsProcessor("converter", converter, 2, FacebookFriendFeedProvider.STREAMS_ID);

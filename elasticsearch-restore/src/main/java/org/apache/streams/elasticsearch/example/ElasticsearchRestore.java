@@ -42,7 +42,7 @@ public class ElasticsearchRestore {
 
         ElasticsearchPersistWriter elasticsearchWriter = new ElasticsearchPersistWriter(elasticsearchWriterConfiguration);
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(10000));
+        StreamBuilder builder = new LocalStreamBuilder(10000);
 
         builder.newPerpetualStream(WebHdfsPersistReader.STREAMS_ID, hdfsReader);
         builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, elasticsearchWriter, 1, WebHdfsPersistReader.STREAMS_ID);

@@ -32,7 +32,7 @@ public class TwitterUserstreamConsole {
 
         TwitterStreamConfiguration twitterStreamConfiguration = TwitterConfigurator.detectTwitterStreamConfiguration(twitter);
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(100));
+        StreamBuilder builder = new LocalStreamBuilder(100);
 
         TwitterStreamProvider stream = new TwitterStreamProvider(twitterStreamConfiguration);
         TwitterTypeConverter converter = new TwitterTypeConverter(ObjectNode.class, String.class);

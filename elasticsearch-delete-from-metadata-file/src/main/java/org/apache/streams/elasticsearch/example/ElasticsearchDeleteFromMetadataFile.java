@@ -47,7 +47,7 @@ public class ElasticsearchDeleteFromMetadataFile implements Runnable {
 
         Map<String, Object> streamConfig = Maps.newHashMap();
         streamConfig.put(LocalStreamBuilder.TIMEOUT_KEY, 20 * 60 * 1000);
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(1000), streamConfig);
+        StreamBuilder builder = new LocalStreamBuilder(1000, streamConfig);
 
         //builder.newReadCurrentStream("console", new ConsolePersistReader());
         builder.newPerpetualStream("console", new ConsolePersistReader());

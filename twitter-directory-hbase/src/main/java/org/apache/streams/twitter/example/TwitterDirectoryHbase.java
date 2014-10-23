@@ -34,7 +34,7 @@ public class TwitterDirectoryHbase {
         TwitterProfileProcessor profile = new TwitterProfileProcessor();
         HbasePersistWriter writer = new HbasePersistWriter();
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(100));
+        StreamBuilder builder = new LocalStreamBuilder(100);
 
         builder.newPerpetualStream(TwitterStreamProvider.STREAMS_ID , provider);
         builder.addStreamsProcessor("profile", profile, 1, TwitterStreamProvider.STREAMS_ID);

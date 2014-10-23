@@ -45,7 +45,7 @@ public class ElasticsearchProviderFromMetadataFile implements Runnable {
 
         Map<String, Object> streamConfig = Maps.newHashMap();
         streamConfig.put(LocalStreamBuilder.TIMEOUT_KEY, 20 * 60 * 1000);
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(1000), streamConfig);
+        StreamBuilder builder = new LocalStreamBuilder(1000, streamConfig);
 
         builder.newPerpetualStream("consolein", new ConsolePersistReader());
         builder.addStreamsProcessor(DatumFromMetadataAsDocumentProcessor.STREAMS_ID, new DatumFromMetadataAsDocumentProcessor(), 1, "consolein");

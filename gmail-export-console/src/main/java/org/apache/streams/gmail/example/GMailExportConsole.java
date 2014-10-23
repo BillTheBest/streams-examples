@@ -33,7 +33,7 @@ public class GMailExportConsole {
         GMailProvider stream = new GMailProvider(gmailConfiguration, GmailMessage.class);
         ConsolePersistWriter console = new ConsolePersistWriter();
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(100));
+        StreamBuilder builder = new LocalStreamBuilder();
 
         builder.newPerpetualStream("gmail", stream);
         builder.addStreamsPersistWriter("console", console, 1, "gmail");

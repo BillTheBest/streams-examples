@@ -66,7 +66,7 @@ public class ElasticsearchReidentify {
 
         Map<String, Object> streamConfig = Maps.newHashMap();
         streamConfig.put(LocalStreamBuilder.TIMEOUT_KEY, 20 * 60 * 1000);
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(1000), streamConfig);
+        StreamBuilder builder = new LocalStreamBuilder(1000, streamConfig);
 
         builder.newPerpetualStream(ElasticsearchPersistReader.STREAMS_ID, elasticsearchPersistReader);
         builder.addStreamsProcessor("CleanAdditionalPropertiesProcessor", cleanAdditionalPropertiesProcessor, 2, ElasticsearchPersistReader.STREAMS_ID);

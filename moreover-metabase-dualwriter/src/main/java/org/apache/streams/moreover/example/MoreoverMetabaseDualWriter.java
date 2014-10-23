@@ -47,7 +47,7 @@ public class MoreoverMetabaseDualWriter {
 
         ElasticsearchPersistWriter elasticsearchWriter = new ElasticsearchPersistWriter(elasticsearchWriterConfiguration);
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>());
+        StreamBuilder builder = new LocalStreamBuilder(1000);
 
         builder.newReadCurrentStream(WebHdfsPersistReader.STREAMS_ID, hdfsReader);
         builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, elasticsearchWriter, 1, WebHdfsPersistReader.STREAMS_ID);

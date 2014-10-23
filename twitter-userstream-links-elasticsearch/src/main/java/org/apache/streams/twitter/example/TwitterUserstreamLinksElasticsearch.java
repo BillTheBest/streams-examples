@@ -38,7 +38,7 @@ public class TwitterUserstreamLinksElasticsearch {
         TwitterStreamConfiguration twitterStreamConfiguration = TwitterConfigurator.detectTwitterStreamConfiguration(twitter);
         ElasticsearchWriterConfiguration elasticsearchWriterConfiguration = ElasticsearchConfigurator.detectWriterConfiguration(elasticsearch);
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(100));
+        StreamBuilder builder = new LocalStreamBuilder(100);
 
         TwitterStreamProvider stream = new TwitterStreamProvider(twitterStreamConfiguration);
         TwitterTypeConverter converter = new TwitterTypeConverter(ObjectNode.class, Activity.class);

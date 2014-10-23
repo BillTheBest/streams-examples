@@ -42,7 +42,7 @@ public class TwitterGardenhoseDualWriter {
         Config hdfs = StreamsConfigurator.config.getConfig("hdfs");
         Config elasticsearch = StreamsConfigurator.config.getConfig("elasticsearch");
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>());
+        StreamBuilder builder = new LocalStreamBuilder();
 
         TwitterStreamConfiguration twitterStreamConfiguration = TwitterConfigurator.detectTwitterStreamConfiguration(twitter);
         TwitterStreamProvider stream = new TwitterStreamProvider(twitterStreamConfiguration);

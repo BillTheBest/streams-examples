@@ -50,7 +50,7 @@ public class FacebookHistoryElasticsearch {
 
         ElasticsearchPersistWriter writer = new ElasticsearchPersistWriter(elasticsearchWriterConfiguration);
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>());
+        StreamBuilder builder = new LocalStreamBuilder();
 
         builder.newReadCurrentStream("provider", provider);
         builder.addStreamsPersistWriter("writer", writer, 1, "provider");

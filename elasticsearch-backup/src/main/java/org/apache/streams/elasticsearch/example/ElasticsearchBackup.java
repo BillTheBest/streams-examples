@@ -37,7 +37,7 @@ public class ElasticsearchBackup {
 
         WebHdfsPersistWriter hdfsWriter = new WebHdfsPersistWriter(hdfsWriterConfiguration);
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(2500));
+        StreamBuilder builder = new LocalStreamBuilder(2500);
 
         builder.newPerpetualStream(ElasticsearchPersistReader.STREAMS_ID, elasticsearchReader);
         builder.addStreamsPersistWriter(WebHdfsPersistWriter.STREAMS_ID, hdfsWriter, 1, ElasticsearchPersistReader.STREAMS_ID);

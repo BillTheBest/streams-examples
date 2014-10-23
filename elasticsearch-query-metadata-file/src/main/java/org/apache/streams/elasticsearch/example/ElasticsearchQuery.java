@@ -61,7 +61,7 @@ public class ElasticsearchQuery implements Runnable {
 
         Map<String, Object> streamConfig = Maps.newHashMap();
         streamConfig.put(LocalStreamBuilder.TIMEOUT_KEY, 20 * 60 * 1000);
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(1000), streamConfig);
+        StreamBuilder builder = new LocalStreamBuilder(1000, streamConfig);
 
         builder.newPerpetualStream(ElasticsearchPersistReader.STREAMS_ID, elasticsearchReader);
         builder.addStreamsPersistWriter("console", new ConsoleMetadataWriter(), 1, ElasticsearchPersistReader.STREAMS_ID);

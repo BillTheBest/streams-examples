@@ -44,7 +44,7 @@ public class TwitterHistoryElasticsearchTweet {
         TwitterTypeConverter converter = new TwitterTypeConverter(String.class, Tweet.class);
         ElasticsearchPersistWriter writer = new ElasticsearchPersistWriter(elasticsearchWriterConfiguration);
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>());
+        StreamBuilder builder = new LocalStreamBuilder();
 
         builder.newReadCurrentStream("provider", provider);
         builder.addStreamsProcessor("converter", converter, 2, "provider");

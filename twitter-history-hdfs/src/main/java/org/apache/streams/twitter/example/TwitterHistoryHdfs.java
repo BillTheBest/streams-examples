@@ -42,7 +42,7 @@ public class TwitterHistoryHdfs {
         hdfsWriterConfiguration.setWriterPath(TwitterTimelineProvider.STREAMS_ID);
         hdfsWriterConfiguration.setWriterFilePrefix("data");
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>());
+        StreamBuilder builder = new LocalStreamBuilder();
 
         TwitterTimelineProvider provider = new TwitterTimelineProvider(twitterUserInformationConfiguration, Activity.class);
         WebHdfsPersistWriter writer = new WebHdfsPersistWriter(hdfsWriterConfiguration);

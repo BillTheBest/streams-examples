@@ -37,7 +37,7 @@ public class TwitterGardenhoseElasticsearch {
         Config twitter = StreamsConfigurator.config.getConfig("twitter");
         Config elasticsearch = StreamsConfigurator.config.getConfig("elasticsearch");
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>());
+        StreamBuilder builder = new LocalStreamBuilder();
 
         TwitterStreamConfiguration twitterStreamConfiguration = TwitterConfigurator.detectTwitterStreamConfiguration(twitter);
         TwitterStreamProvider stream = new TwitterStreamProvider(twitterStreamConfiguration);

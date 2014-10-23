@@ -72,7 +72,7 @@ public class MongoElasticsearchIndex {
         MongoPersistReader mongoPersistReader = new MongoPersistReader(mongoConfiguration);
         ElasticsearchPersistWriter elasticsearchPersistWriter = new ElasticsearchPersistWriter(elasticsearchConfiguration);
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(1000));
+        StreamBuilder builder = new LocalStreamBuilder(1000);
 
         builder.newPerpetualStream(MongoPersistReader.STREAMS_ID, mongoPersistReader);
         builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, elasticsearchPersistWriter, 1, MongoPersistReader.STREAMS_ID);

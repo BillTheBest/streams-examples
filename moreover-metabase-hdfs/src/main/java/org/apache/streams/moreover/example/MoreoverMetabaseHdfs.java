@@ -41,7 +41,7 @@ public class MoreoverMetabaseHdfs {
 
         MoreoverProvider moreoverProvider = new MoreoverProvider(moreoverConfiguration);
         WebHdfsPersistWriter hdfsPersistWriter = new WebHdfsPersistWriter(hdfsWriterConfiguration);
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>());
+        StreamBuilder builder = new LocalStreamBuilder();
 
         builder.newPerpetualStream(MoreoverProvider.STREAMS_ID, moreoverProvider);
         builder.addStreamsPersistWriter(WebHdfsPersistWriter.STREAMS_ID, hdfsPersistWriter, 1, MoreoverProvider.STREAMS_ID);

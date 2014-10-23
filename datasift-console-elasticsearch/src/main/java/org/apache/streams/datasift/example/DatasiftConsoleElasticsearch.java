@@ -37,7 +37,7 @@ public class DatasiftConsoleElasticsearch {
         Map<String, Object> streamConfig = Maps.newHashMap();
         streamConfig.put(LocalStreamBuilder.TIMEOUT_KEY, 20 * 60 * 1000 * 1000);
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(100), streamConfig);
+        StreamBuilder builder = new LocalStreamBuilder(100, streamConfig);
 
         ConsolePersistReader consolePersistReader = new ConsolePersistReader();
         DatasiftTypeConverterProcessor datasiftTypeConverter = new DatasiftTypeConverterProcessor(Activity.class);
