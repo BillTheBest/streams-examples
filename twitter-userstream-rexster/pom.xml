@@ -9,6 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <tinkerpop.version>2.5.0</tinkerpop.version>
+    </properties>
+
     <artifactId>twitter-userstream-rexster</artifactId>
 
     <dependencies>
@@ -116,6 +120,18 @@
                     <artifactId>log4j</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.tinkerpop.blueprints</groupId>
+            <artifactId>blueprints-rexster-graph</artifactId>
+            <version>${tinkerpop.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.tinkerpop.rexster</groupId>
+            <artifactId>rexster-protocol</artifactId>
+            <version>${tinkerpop.version}</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 

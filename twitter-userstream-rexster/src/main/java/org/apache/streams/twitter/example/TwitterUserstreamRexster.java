@@ -6,10 +6,8 @@ import org.apache.streams.blueprints.BlueprintsConfigurator;
 import org.apache.streams.blueprints.BlueprintsPersistWriter;
 import org.apache.streams.blueprints.BlueprintsWriterConfiguration;
 import org.apache.streams.config.StreamsConfigurator;
-import org.apache.streams.console.ConsolePersistWriter;
-import org.apache.streams.core.StreamsDatum;
-import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.apache.streams.core.StreamBuilder;
+import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.apache.streams.pojo.json.Activity;
 import org.apache.streams.twitter.TwitterStreamConfiguration;
 import org.apache.streams.twitter.processor.TwitterTypeConverter;
@@ -42,8 +40,8 @@ public class TwitterUserstreamRexster {
         BlueprintsPersistWriter writer = new BlueprintsPersistWriter(blueprintsWriterConfiguration);
 
         builder.newPerpetualStream(TwitterStreamProvider.STREAMS_ID, stream);
-        builder.addStreamsProcessor("converter", converter, 2, TwitterStreamProvider.STREAMS_ID);
-        builder.addStreamsPersistWriter("console", new ConsolePersistWriter(), 1, "converter");
+        builder.addStreamsProcessor("converter", converter, 1, TwitterStreamProvider.STREAMS_ID);
+        //builder.addStreamsPersistWriter("console", new ConsolePersistWriter(), 1, "converter");
         builder.addStreamsPersistWriter(BlueprintsPersistWriter.STREAMS_ID, writer, 1, "converter");
         builder.start();
 
