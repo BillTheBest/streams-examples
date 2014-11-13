@@ -21,20 +21,12 @@ package org.apache.streams.example.hdfsbiohistory.test;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.pig.pigunit.PigTest;
-import org.apache.streams.core.StreamsDatum;
-import org.apache.streams.jackson.StreamsJacksonMapper;
-import org.apache.streams.pojo.json.Activity;
-import org.apache.streams.twitter.processor.TwitterTypeConverter;
-import org.apache.streams.twitter.serializer.TwitterJsonActivitySerializer;
-import org.apache.streams.twitter.serializer.TwitterJsonTweetActivitySerializer;
-import org.apache.tools.ant.util.StringUtils;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * These are tests for StreamsProcessDocumentExec
