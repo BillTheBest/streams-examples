@@ -50,6 +50,10 @@
           <url>http://clojars.org/repo</url>
         </repository>
         <repository>
+            <id>sonatype</id>
+            <url>http://repository.sonatype.org/content/groups/public/</url>
+        </repository>
+        <repository>
             <id>cloudera</id>
             <url>https://repository.cloudera.com/artifactory/repo</url>
         </repository>
@@ -61,31 +65,45 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.6</java.version>
+        <java.version>1.7</java.version>
     </properties>
 
     <modules>
-        <!--<module>datasift-streaming-console</module>-->
+        <module>datasift-console-elasticsearch</module>
+        <module>datasift-instagram-elasticsearch</module>
+        <module>datasift-streaming-console</module>
+        <module>datasift-webhook</module>
         <module>elasticsearch-backup</module>
+        <module>elasticsearch-delete</module>
+        <module>elasticsearch-delete-from-metadata-file</module>
+        <module>elasticsearch-directory</module>
+        <module>elasticsearch-provider-from-metadata-file</module>
+        <module>elasticsearch-query-metadata-file</module>
         <module>elasticsearch-reindex</module>
+        <module>elasticsearch-reserialize</module>
         <module>elasticsearch-restore</module>
-        <module>gmail-export-standalone</module>
+        <module>facebook-history-elasticsearch</module>
+        <module>facebook-userstream-elasticsearch</module>
+        <module>gmail-export-console</module>
         <!--<module>hdfs-biohistory</module>-->
         <!--<module>hdfs-converttoactivity</module>-->
         <!--<module>hdfs-urlunwind</module>-->
         <!--<module>hdfs-pullarticles</module>-->
-        <!--<module>instagram-timeline-console</module>-->
+        <module>instagram-recentmedia-console</module>
         <module>mongo-elasticsearch-index</module>
+        <module>moreover-metabase-elasticsearch</module>
         <module>moreover-metabase-hdfs</module>
+        <module>moreover-metabase-dualwriter</module>
         <module>sysomos-mongo</module>
+        <module>twitter-directory-hbase</module>
+        <module>twitter-directory-mongo</module>
         <module>twitter-gardenhose-elasticsearch</module>
         <module>twitter-gardenhose-dualwriter</module>
         <module>twitter-history-hdfs</module>
         <module>twitter-history-elasticsearch</module>
-        <module>twitter-profiles-hbase</module>
-        <module>twitter-profiles-mongo</module>
         <module>twitter-userstream-console</module>
         <module>twitter-userstream-elasticsearch</module>
+        <module>twitter-userstream-links-elasticsearch</module>
         <!--<module>twitter-usermetrics-elasticsearch</module>-->
     </modules>
 

@@ -27,14 +27,9 @@ public class ElasticsearchRestore {
 
     private final static ObjectMapper mapper = new ObjectMapper();
 
-    private static String index;
-    private static String type;
-
     public static void main(String[] args)
     {
         LOGGER.info(StreamsConfigurator.config.toString());
-
-        detectConfiguration();
 
         Config hdfs = StreamsConfigurator.config.getConfig("hdfs");
 
@@ -43,32 +38,16 @@ public class ElasticsearchRestore {
         WebHdfsPersistReader hdfsReader = new WebHdfsPersistReader(hdfsReaderConfiguration);
 
         Config elasticsearch = StreamsConfigurator.config.getConfig("elasticsearch");
-        ElasticsearchConfiguration elasticsearchConfiguration = ElasticsearchConfigurator.detectConfiguration(elasticsearch);
-        ElasticsearchWriterConfiguration elasticsearchWriterConfiguration  = mapper.convertValue(elasticsearchConfiguration, ElasticsearchWriterConfiguration.class);
-        elasticsearchWriterConfiguration.setIndex(index + "_" + type);
-        elasticsearchWriterConfiguration.setType(type);
+        ElasticsearchWriterConfiguration elasticsearchWriterConfiguration = ElasticsearchConfigurator.detectWriterConfiguration(elasticsearch);
 
         ElasticsearchPersistWriter elasticsearchWriter = new ElasticsearchPersistWriter(elasticsearchWriterConfiguration);
 
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(10000));
+        StreamBuilder builder = new LocalStreamBuilder(10000);
 
         builder.newPerpetualStream(WebHdfsPersistReader.STREAMS_ID, hdfsReader);
         builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, elasticsearchWriter, 1, WebHdfsPersistReader.STREAMS_ID);
         builder.start();
 
     }
-
-    private static void detectConfiguration() {
-
-        Config elasticsearch = StreamsConfigurator.config.getConfig("elasticsearch");
-
-        Config restore = elasticsearch.getConfig("restore");
-
-        index = restore.getString("index");
-
-        type = restore.getString("type");
-
-    }
-
 
 }

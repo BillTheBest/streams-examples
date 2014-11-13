@@ -1,0 +1,11 @@
+digraph g {
+  
+  //providers
+  DatasiftStreamProvider [label="DatasiftStreamProvider",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-datasift/src/main/java/org/apache/streams/datasift/provider/DatasiftStreamProvider.java"];
+
+  //persisters
+  ConsolePersistWriter [label="ConsolePersistWriter",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-processor-regex/src/main/java/org/apache/streams/console/ConsolePersistWriter.java"];
+  
+  //stream
+  DatasiftStreamProvider -> ConsolePersistWriter [label="String"];
+}

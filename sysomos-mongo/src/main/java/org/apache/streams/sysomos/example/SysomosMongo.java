@@ -44,7 +44,7 @@ public class SysomosMongo {
 
         Map<String, Object> streamConfig = Maps.newHashMap();
         streamConfig.put(LocalStreamBuilder.TIMEOUT_KEY, 20 * 60 * 1000);
-        StreamBuilder builder = new LocalStreamBuilder(new LinkedBlockingQueue<StreamsDatum>(1000), streamConfig);
+        StreamBuilder builder = new LocalStreamBuilder(1000, streamConfig);
 
         builder.newPerpetualStream("SysomosProvider", provider);
         builder.addStreamsProcessor("SysomosActivityConverter", new SysomosTypeConverter(), 10, "SysomosProvider");

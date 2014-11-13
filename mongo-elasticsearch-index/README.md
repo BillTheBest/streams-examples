@@ -1,44 +1,52 @@
-elasticsearch-reindex
+mongo-elasticsearch-index
 ==============================
 
 Requirements:
 -------------
+ - A running MongoDB 2.4+ instance
  - A running ElasticSearch 1.0.0+ instance
+
+Description:
+------------
+Copies documents from mongo to elasticsearch
+
+Specification:
+-----------------
+
+[MongoElasticsearchIndex.dot](src/main/resources/MongoElasticsearchIndex.dot "MongoElasticsearchIndex.dot" )
+
+Diagram:
+-----------------
+
+![MongoElasticsearchIndex.png](./MongoElasticsearchIndex.png?raw=true)
 
 Example Configuration:
 ----------------------
 
-{
-    "reindex": {
-        "source": {
-            "hosts": [
-                "localhost"
-            ],
-            "port": 9300,
-            "clusterName": "elasticsearch",
-            "indexes": [
-                "brand_twitteractivity"
-            ],
-            "types": [
-                "twitteractivity"
-            ]
-        },
-        "destination": {
-            "hosts": [
-                "localhost"
-            ],
-            "port": 9300,
-            "clusterName": "elasticsearch",
-            "index": "brand-reindex-range_twitteractivity",
-            "type": "twitteractivity"
+    {
+        "reindex": {
+            "source": {
+                "mongo": {
+                    "host": "localhost",
+                    "port": 27017,
+                    "db": "streamsdb",
+                    "collection": "streams"
+                }
+            },
+            "destination": {
+                "hosts": [
+                    "localhost"
+                ],
+                "port": 9300,
+                "clusterName": "elasticsearch",
+                "index": "brand-reindex-range_twitteractivity",
+                "type": "twitteractivity"
+            }
         }
     }
-}
-
-Populate source and destination with cluster / index / type details
 
 Running:
 --------
 
-`java -cp target/elasticsearch-reindex-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.json org.apache.streams.twitter.example.TwitterHistoryElasticsearch{Tweet|Retweet|Activity}`
+    java -cp target/mongo-elasticsearch-index-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.json org.apache.streams.elasticsearch.example.MongoElasticsearchIndex
 

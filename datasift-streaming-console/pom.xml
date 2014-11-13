@@ -137,7 +137,7 @@
                                         implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.apache.streams.twitter.example.TwitterUserstreamElasticsearch</mainClass>
+                                    <mainClass>org.apache.streams.datasift.example.DatasiftStreamingConsole</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

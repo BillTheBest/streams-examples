@@ -1,0 +1,22 @@
+digraph g {
+
+  //providers
+  TwitterStreamProvider [label="TwitterStreamProvider",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-twitter/src/main/java/org/apache/streams/twitter/provider/TwitterStreamProvider.java"];
+
+  //processors
+  TwitterProfileProcessor [label="TwitterProfileProcessor",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-twitter/src/main/java/org/apache/streams/twitter/processor/TwitterProfileProcessor.java"];
+  
+  //persisters
+  MongoPersistWriter [label="MongoPersistWriter",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-persist-mongo/src/main/java/org/apache/streams/mongo/MongoPersistWriter.java"];
+
+  //data
+  mongo [label="mongo://{db}/{collection}",shape=box];
+ 
+  //stream
+  TwitterStreamProvider -> TwitterTypeConverter [label="ObjectNode"];
+  TwitterTypeConverter -> TwitterProfileProcessor [label="Activity",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/activity.json"]; 
+  TwitterProfileProcessor -> MongoPersistWriter [label="Actor",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/object.json"];
+  
+  MongoPersistWriter -> mongo [label="Actor",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/object.json"];
+  
+}

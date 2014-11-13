@@ -5,11 +5,22 @@ Requirements:
 -------------
  - Authorized Twitter API credentials
  - A running ElasticSearch 1.0.0+ instance
- - 'head' plugin for ElasticSearch (`elasticsearch/bin/plugin -install mobz/elasticsearch-head`)
- - 'marvel' plugin for ElasticSearch (`elasticsearch/bin/plugin -install elasticsearch/marvel/latest`)
 
-This example includes three separate jars: one for indexing tweets, one for indexing activities, and one for indexing retweets.
-Each of these jars require a corresponding configuration file that defines both Twitter and ElasticSearch preferences
+Description:
+------------
+Retrieves as many posts from a known list of users as twitter API allows.
+
+Converts them to activities, and writes them in both raw and activity format to HDFS.
+
+Specification:
+-----------------
+
+[TwitterHistoryElasticsearch.dot](src/main/resources/TwitterHistoryElasticsearch.dot "TwitterGardenhoseElasticsearch.dot" )
+
+Diagram:
+-----------------
+
+![TwitterHistoryElasticsearch.png](./TwitterHistoryElasticsearch.png?raw=true)
 
 Example Configuration:
 ----------------------
@@ -23,9 +34,10 @@ Example Configuration:
             accessToken = ""
             accessTokenSecret = ""
         }
-        follow = [
-            42232950
-        ]
+        info = [
+            "42232950"
+            "211620426"
+        ]
     }
     elasticsearch {
         hosts = [
@@ -45,12 +57,13 @@ Running:
 
 You will need to run `./install_templates.sh` in the resources folder in order to apply the templates to your ES cluster
 
-Once the configuration file has been completed and the templates installed, this example can be run with:
-`java -cp target/twitter-history-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.twitter.example.TwitterHistoryElasticsearchActivity`
+    java -cp target/twitter-history-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=application.conf org.apache.streams.twitter.example.TwitterHistoryElasticsearchActivity
+
+Note that you must modify src/main/resources/application.conf, and supply an absolute path to config.file
 
 Verification:
 -------------
-Open up http://localhost:9200/_plugin/head/ and confirm that all three indices now have data in them
+Open up http://localhost:9200/_plugin/head/ and confirm that the index you specified now contains has data
 
 Download https://github.com/w2ogroup/streams-examples/blob/master/twitter-history-elasticsearch/src/main/resources/reports/ActivityReport.json
 

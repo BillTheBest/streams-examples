@@ -8,7 +8,19 @@ Requirements:
  - 'head' plugin for ElasticSearch (`elasticsearch/bin/plugin -install mobz/elasticsearch-head`)
  - 'marvel' plugin for ElasticSearch (`elasticsearch/bin/plugin -install elasticsearch/marvel/latest`)
 
-This example connects to an active twitter account and displays the userstream
+Description:
+------------
+This example connects to an active twitter account and stores the userstream as activities in Elasticsearch
+
+Specification:
+-----------------
+
+[TwitterUserstreamElasticsearch.dot](src/main/resources/TwitterUserstreamElasticsearch.dot "TwitterUserstreamElasticsearch.dot" )
+
+Diagram:
+-----------------
+
+![TwitterUserstreamElasticsearch.png](./TwitterUserstreamElasticsearch.png?raw=true)
 
 Example Configuration:
 ----------------------
@@ -20,10 +32,7 @@ Example Configuration:
                 consumerSecret = "S4dwxnZni58CIJaoupGnUrO4HRHmbBGOb28W6IqOJBx36LPw2z"
                 accessToken = ""
                 accessTokenSecret = ""
-            }
-        follow = [
-                2189174101
-        ]
+        }
     }
     elasticsearch {
         hosts = [
@@ -45,7 +54,7 @@ Running:
 
 Once the configuration file has been completed this example can be run with:
 
-`java -cp target/twitter-userstream-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.twitter.example.TwitterUserstreamElasticsearch`
+    java -cp target/twitter-userstream-elasticsearch-0.1-SNAPSHOT.jar -Dconfig.file=src/main/resources/application.conf org.apache.streams.twitter.example.TwitterUserstreamElasticsearch
 
 Verification:
 -------------

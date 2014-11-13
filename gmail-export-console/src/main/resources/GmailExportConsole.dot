@@ -1,0 +1,12 @@
+digraph g {
+
+  //providers
+  GMailProvider [label="GMailProvider",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-google/google-gmail/src/main/java/com/google/gplus/provider/GMailProvider.java"];
+
+  //persisters
+  ConsolePersistWriter [label="ConsolePersistWriter",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-processor-regex/src/main/java/org/apache/streams/console/ConsolePersistWriter.java"];
+ 
+  //stream
+  GMailProvider -> ConsolePersistWriter [label="Activity",URL="https://github.com/apache/incubator-streams/blob/master/streams-pojo/src/main/jsonschema/org/apache/streams/pojo/json/activity.json"];
+ 
+}
