@@ -38,7 +38,6 @@ public class TwitterHistoryElasticsearchRetweet {
 
         TwitterTimelineProvider provider = new TwitterTimelineProvider(twitterUserInformationConfiguration, String.class);
         TypeConverterProcessor converter = new TypeConverterProcessor(Retweet.class);
-        // TODO: ActivitySerializerProcessor
         ElasticsearchPersistWriter writer = new ElasticsearchPersistWriter(elasticsearchWriterConfiguration);
 
         StreamBuilder builder = new LocalStreamBuilder();
