@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "javaType" : "org.apache.streams.datasift.example.StreamsApiConfiguration",
+    "extends": {
+        "javaType": "io.dropwizard.Configuration",
+        "type": "object"
+    },
+    "properties": {
+        "datasift": { "javaType": "org.apache.streams.datasift.DatasiftConfiguration", "type": "object", "required": false },
+        "elasticsearch": { "javaType": "org.apache.streams.elasticsearch.ElasticsearchWriterConfiguration", "type": "object", "required": false },
+        "hdfs": { "javaType": "org.apache.streams.hdfs.HdfsWriterConfiguration", "type": "object", "required": false },
+        "kafka": { "javaType": "org.apache.streams.kafka.KafkaConfiguration", "type": "object", "required": false },
+        "s3": { "javaType": "org.apache.streams.s3.S3WriterConfiguration", "type": "object", "required": false }
+    }
+}
