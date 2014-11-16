@@ -21,7 +21,12 @@ elasticsearch:
     - "localhost"
   port: 9300
   clusterName: elasticsearch
-  index: datasift_webhook
+  index: datasift_webhook_what
   type: activity
   batchSize: 100
 
+kafka:
+  brokerlist: "localhost:9092"
+  zkconnect: "localhost:2181"
+  topic: "datasift"
+  groupId: "group"
