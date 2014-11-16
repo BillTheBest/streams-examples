@@ -1,23 +1,24 @@
 package org.apache.streams.twitter.example;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.common.collect.Lists;
 import com.typesafe.config.Config;
 import org.apache.streams.config.StreamsConfigurator;
-import org.apache.streams.core.StreamsDatum;
+import org.apache.streams.converter.ActivityConverterProcessor;
+import org.apache.streams.converter.ActivityConverterProcessorConfiguration;
+import org.apache.streams.core.StreamBuilder;
+import org.apache.streams.data.ActivityConverterResolver;
+import org.apache.streams.data.DocumentClassifier;
 import org.apache.streams.elasticsearch.ElasticsearchConfigurator;
 import org.apache.streams.elasticsearch.ElasticsearchPersistWriter;
 import org.apache.streams.elasticsearch.ElasticsearchWriterConfiguration;
 import org.apache.streams.local.builders.LocalStreamBuilder;
-import org.apache.streams.core.StreamBuilder;
-import org.apache.streams.pojo.json.Activity;
 import org.apache.streams.twitter.TwitterStreamConfiguration;
-import org.apache.streams.twitter.processor.TwitterTypeConverter;
 import org.apache.streams.twitter.provider.TwitterConfigurator;
 import org.apache.streams.twitter.provider.TwitterStreamProvider;
+import org.apache.streams.twitter.serializer.TwitterConverterResolver;
+import org.apache.streams.twitter.serializer.TwitterDocumentClassifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by sblackmon on 12/10/13.
@@ -39,11 +40,16 @@ public class TwitterUserstreamElasticsearch {
         StreamBuilder builder = new LocalStreamBuilder(100);
 
         TwitterStreamProvider stream = new TwitterStreamProvider(twitterStreamConfiguration);
-        TwitterTypeConverter converter = new TwitterTypeConverter(ObjectNode.class, Activity.class);
+        ActivityConverterProcessor converter = new ActivityConverterProcessor(
+                new ActivityConverterProcessorConfiguration()
+                        .withClassifiers(Lists.newArrayList((DocumentClassifier) TwitterDocumentClassifier.getInstance()))
+                        .withResolvers(Lists.newArrayList((ActivityConverterResolver) TwitterConverterResolver.getInstance()))
+        );
+
         ElasticsearchPersistWriter writer = new ElasticsearchPersistWriter(elasticsearchWriterConfiguration);
 
         builder.newPerpetualStream(TwitterStreamProvider.STREAMS_ID, stream);
-        builder.addStreamsProcessor("converter", converter, 2, TwitterStreamProvider.STREAMS_ID);
+        builder.addStreamsProcessor("converter", converter, 1, TwitterStreamProvider.STREAMS_ID);
         builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, writer, 1, "converter");
         builder.start();
 

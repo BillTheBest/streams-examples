@@ -3,7 +3,7 @@ digraph g {
   //providers
   console [label="console : ConsolePersistReader",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-console/src/main/java/org/apache/streams/console/provider/ConsolePersistReader.java"];
   converter [label="converter : DatasiftTypeConverterProcessor",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-datasift/src/main/java/org/apache/streams/datasift/processor/DatasiftTypeConverterProcessor.java"];
-  cleaner [label="cleaner : CleanAdditionalPropertiesProcessor",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-processor-jackson/src/main/java/org/apache/streams/jackson/CleanAdditionalPropertiesProcessor.java"];
+  cleaner [label="cleaner : CleanAdditionalPropertiesProcessor",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-converters/src/main/java/org/apache/streams/jackson/CleanAdditionalPropertiesProcessor.java"];
   RegexMentionsExtractor [label="RegexMentionsExtractor",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-processor-regex/src/main/java/org/apache/streams/regex/RegexMentionsExtractor.java"];
 
   //persisters

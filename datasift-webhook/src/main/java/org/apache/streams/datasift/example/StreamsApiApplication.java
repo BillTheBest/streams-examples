@@ -19,7 +19,7 @@ import org.apache.streams.datasift.processor.DatasiftTypeConverterProcessor;
 import org.apache.streams.datasift.provider.DatasiftPushProvider;
 import org.apache.streams.datasift.util.StreamsDatasiftMapper;
 import org.apache.streams.elasticsearch.ElasticsearchPersistWriter;
-import org.apache.streams.jackson.CleanAdditionalPropertiesProcessor;
+import org.apache.streams.converter.CleanAdditionalPropertiesProcessor;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.apache.streams.pojo.json.Activity;
 import org.slf4j.Logger;

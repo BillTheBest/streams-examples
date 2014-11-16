@@ -4,9 +4,9 @@ digraph g {
   ElasticsearchPersistReader [label="ElasticsearchPersistReader",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-provider-elasticsearch/src/main/java/org/apache/streams/elasticsearch/ElasticsearchPersistReader.java"];
 
   //processors
-  cleaner [label="cleaner : CleanAdditionalPropertiesProcessor",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-processor-jackson/src/main/java/org/apache/streams/jackson/CleanAdditionalPropertiesProcessor.java"];
+  cleaner [label="cleaner : CleanAdditionalPropertiesProcessor",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-converters/src/main/java/org/apache/streams/jackson/CleanAdditionalPropertiesProcessor.java"];
   extractOriginalDocument [label="extractOriginalDocument : JsonPathExtractor($.extensions.{provider.id})",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-processor-jsonpath/src/main/java/org/apache/streams/jsonpath/JsonPathExtractor.java"];
-  reserialize [label="extractOriginalDocument : TypeConverter",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-processor-jackson/src/main/java/org/apache/streams/jackson/TypeConverter.java"];
+  reserialize [label="extractOriginalDocument : TypeConverter",shape=box,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-converters/src/main/java/org/apache/streams/jackson/TypeConverter.java"];
 
   //persisters
   ElasticsearchPersistWriter [label="ElasticsearchPersistWriter",shape=ellipse,URL="https://github.com/apache/incubator-streams/blob/master/streams-contrib/streams-persist-elasticsearch/src/main/java/org/apache/streams/elasticsearch/ElasticsearchPersistWriter.java"];

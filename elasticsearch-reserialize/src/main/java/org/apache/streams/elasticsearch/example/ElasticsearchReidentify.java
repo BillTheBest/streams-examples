@@ -13,7 +13,7 @@ import org.apache.streams.core.StreamBuilder;
 import org.apache.streams.core.StreamsDatum;
 import org.apache.streams.core.StreamsProcessor;
 import org.apache.streams.elasticsearch.*;
-import org.apache.streams.jackson.CleanAdditionalPropertiesProcessor;
+import org.apache.streams.converter.CleanAdditionalPropertiesProcessor;
 import org.apache.streams.jackson.StreamsJacksonMapper;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.slf4j.Logger;

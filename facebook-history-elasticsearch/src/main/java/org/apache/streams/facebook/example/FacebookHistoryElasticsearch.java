@@ -1,24 +1,21 @@
 package org.apache.streams.facebook.example;
 
-import org.apache.streams.facebook.provider.FacebookUserInformationProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigRenderOptions;
 import org.apache.streams.config.StreamsConfigurator;
-import org.apache.streams.console.ConsolePersistWriter;
 import org.apache.streams.core.StreamBuilder;
-import org.apache.streams.core.StreamsDatum;
 import org.apache.streams.elasticsearch.ElasticsearchConfigurator;
 import org.apache.streams.elasticsearch.ElasticsearchPersistWriter;
 import org.apache.streams.elasticsearch.ElasticsearchWriterConfiguration;
 import org.apache.streams.facebook.FacebookUserInformationConfiguration;
+import org.apache.streams.facebook.provider.FacebookUserInformationProvider;
 import org.apache.streams.jackson.StreamsJacksonMapper;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by sblackmon on 12/10/13.
