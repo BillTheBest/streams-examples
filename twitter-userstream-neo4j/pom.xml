@@ -93,6 +93,21 @@
         </dependency>
         <dependency>
             <groupId>org.apache.streams</groupId>
+            <artifactId>streams-converters</artifactId>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.streams</groupId>
             <artifactId>streams-persist-graph</artifactId>
             <version>${project.version}</version>
             <exclusions>
@@ -157,7 +172,7 @@
                                         implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.apache.streams.twitter.example.TwitterUserstreamRexster</mainClass>
+                                    <mainClass>org.apache.streams.twitter.example.TwitterUserstreamNeo4j</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
