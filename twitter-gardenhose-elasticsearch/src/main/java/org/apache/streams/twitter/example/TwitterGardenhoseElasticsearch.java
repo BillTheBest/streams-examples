@@ -13,13 +13,18 @@ import org.apache.streams.elasticsearch.ElasticsearchConfigurator;
 import org.apache.streams.elasticsearch.ElasticsearchPersistWriter;
 import org.apache.streams.elasticsearch.ElasticsearchWriterConfiguration;
 import org.apache.streams.local.builders.LocalStreamBuilder;
+import org.apache.streams.core.StreamBuilder;
+import org.apache.streams.pojo.json.Activity;
 import org.apache.streams.twitter.TwitterStreamConfiguration;
 import org.apache.streams.twitter.provider.TwitterConfigurator;
 import org.apache.streams.twitter.provider.TwitterStreamProvider;
+import org.apache.streams.twitter.provider.TwitterTimelineProvider;
 import org.apache.streams.twitter.serializer.TwitterConverterResolver;
 import org.apache.streams.twitter.serializer.TwitterDocumentClassifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by sblackmon on 12/10/13.

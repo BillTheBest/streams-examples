@@ -73,6 +73,7 @@
         <module>datasift-instagram-elasticsearch</module>
         <module>datasift-streaming-console</module>
         <module>datasift-webhook</module>
+        <!--<module>datasift-push-kafka</module>-->
         <module>elasticsearch-backup</module>
         <module>elasticsearch-delete</module>
         <module>elasticsearch-delete-from-metadata-file</module>
@@ -101,6 +102,7 @@
         <module>twitter-gardenhose-dualwriter</module>
         <module>twitter-history-hdfs</module>
         <module>twitter-history-elasticsearch</module>
+        <module>twitter-profiles-peoplepattern</module>
         <module>twitter-userstream-console</module>
         <module>twitter-userstream-elasticsearch</module>
         <module>twitter-userstream-links-elasticsearch</module>

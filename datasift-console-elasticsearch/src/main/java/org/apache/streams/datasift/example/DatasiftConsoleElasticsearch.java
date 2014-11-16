@@ -6,7 +6,7 @@ import org.apache.streams.config.StreamsConfigurator;
 import org.apache.streams.console.ConsolePersistReader;
 import org.apache.streams.converter.CleanAdditionalPropertiesProcessor;
 import org.apache.streams.core.StreamBuilder;
-import org.apache.streams.datasift.processor.DatasiftTypeConverterProcessor;
+import org.apache.streams.datasift.processor.DatasiftActivitySerializerProcessor;
 import org.apache.streams.elasticsearch.ElasticsearchConfigurator;
 import org.apache.streams.elasticsearch.ElasticsearchPersistWriter;
 import org.apache.streams.elasticsearch.ElasticsearchWriterConfiguration;
@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by sblackmon on 12/10/13.
@@ -38,7 +39,7 @@ public class DatasiftConsoleElasticsearch {
         StreamBuilder builder = new LocalStreamBuilder(100, streamConfig);
 
         ConsolePersistReader consolePersistReader = new ConsolePersistReader();
-        DatasiftTypeConverterProcessor datasiftTypeConverter = new DatasiftTypeConverterProcessor(Activity.class);
+        DatasiftActivitySerializerProcessor datasiftTypeConverter = new DatasiftActivitySerializerProcessor(Activity.class);
         RegexMentionsExtractor regexMentionsExtractor = new RegexMentionsExtractor();
         ElasticsearchPersistWriter writer = new ElasticsearchPersistWriter(elasticsearchWriterConfiguration);
 
