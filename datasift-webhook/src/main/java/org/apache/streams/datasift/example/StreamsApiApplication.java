@@ -1,35 +1,31 @@
 package org.apache.streams.datasift.example;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 import com.google.common.collect.Maps;
-import com.typesafe.config.Config;
-import com.typesafe.config.ConfigFactory;
-import com.typesafe.config.ConfigRenderOptions;
 import io.dropwizard.Application;
 import io.dropwizard.jackson.GuavaExtrasModule;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import org.apache.streams.config.StreamsConfigurator;
 import org.apache.streams.core.StreamBuilder;
-import org.apache.streams.core.StreamsDatum;
-import org.apache.streams.datasift.processor.DatasiftTypeConverterProcessor;
+import org.apache.streams.datasift.Datasift;
+import org.apache.streams.datasift.processor.DatasiftActivitySerializerProcessor;
 import org.apache.streams.datasift.provider.DatasiftPushProvider;
 import org.apache.streams.datasift.util.StreamsDatasiftMapper;
 import org.apache.streams.elasticsearch.ElasticsearchPersistWriter;
-import org.apache.streams.jackson.CleanAdditionalPropertiesProcessor;
+import org.apache.streams.hdfs.WebHdfsPersistWriter;
+import org.apache.streams.converter.TypeConverterProcessor;
+import org.apache.streams.kafka.KafkaPersistWriter;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.apache.streams.pojo.json.Activity;
+import org.apache.streams.s3.S3PersistWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class StreamsApiApplication extends Application<StreamsApiConfiguration> {
 
@@ -40,13 +36,13 @@ public class StreamsApiApplication extends Application<StreamsApiConfiguration> 
 
     private StreamBuilder builder;
 
+    private StreamsApiConfiguration configuration;
+
     private DatasiftPushProvider provider;
-    private ElasticsearchPersistWriter writer;
 
     private Executor executor = Executors.newSingleThreadExecutor();
 
-    private com.w2olabs.streams.DatasiftWebhookResource webhooks;
-
+    private DatasiftWebhookResource webhook;
 
     static {
         mapper.registerModule(new AfterburnerModule());
@@ -62,11 +58,11 @@ public class StreamsApiApplication extends Application<StreamsApiConfiguration> 
     }
 
     @Override
-    public void run(StreamsApiConfiguration streamsApiConfiguration, Environment environment) throws Exception {
+    public void run(StreamsApiConfiguration configuration, Environment environment) throws Exception {
 
-        // streamsApiConfiguration = reconfigure(streamsApiConfiguration);
-        provider = new com.w2olabs.streams.DatasiftWebhookResource();
-        writer = new ElasticsearchPersistWriter(streamsApiConfiguration.getElasticsearch());
+        this.configuration = configuration;
+
+        provider = new DatasiftWebhookResource();
 
         executor = Executors.newSingleThreadExecutor();
 
@@ -89,44 +85,25 @@ public class StreamsApiApplication extends Application<StreamsApiConfiguration> 
             builder = new LocalStreamBuilder(1000, streamConfig);
 
             // prepare stream components
-            builder.newPerpetualStream("webhooks", provider);
-            builder.addStreamsProcessor("converter", new DatasiftTypeConverterProcessor(Activity.class), 2, "webhooks");
-            builder.addStreamsProcessor("RemoveAdditionalProperties", new CleanAdditionalPropertiesProcessor(), 2, "converter");
-            builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, writer, 1, "RemoveAdditionalProperties");
+            builder.newPerpetualStream("webhook", provider);
+            builder.addStreamsProcessor("converter", new TypeConverterProcessor(String.class, Datasift.class), 2, "webhook");
+            builder.addStreamsProcessor("serializer", new DatasiftActivitySerializerProcessor(Activity.class), 2, "converter");
+
+            if( configuration.getElasticsearch() != null )
+                builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, new ElasticsearchPersistWriter(configuration.getElasticsearch()), 1, "serializer");
+
+            if( configuration.getHdfs() != null )
+                builder.addStreamsPersistWriter(WebHdfsPersistWriter.STREAMS_ID, new WebHdfsPersistWriter(configuration.getHdfs()), 1, "serializer");
+
+            if( configuration.getKafka() != null )
+                builder.addStreamsPersistWriter("kafka", new KafkaPersistWriter(), 1, "serializer");
+
+            if( configuration.getS3() != null )
+                builder.addStreamsPersistWriter(S3PersistWriter.STREAMS_ID, new S3PersistWriter(configuration.getS3()), 1, "serializer");
 
             builder.start();
 
         }
-    }
-
-
-    private StreamsApiConfiguration reconfigure(StreamsApiConfiguration streamsApiConfiguration) {
-
-        // config from typesafe
-        Config configTypesafe = StreamsConfigurator.config;
-
-        // config from dropwizard
-        Config configDropwizard = null;
-        try {
-            configDropwizard = ConfigFactory.parseString(mapper.writeValueAsString(streamsApiConfiguration));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            LOGGER.error("Invalid Configuration: " + streamsApiConfiguration);
-        }
-
-        Config combinedConfig = configTypesafe.withFallback(configDropwizard);
-        String combinedConfigJson = combinedConfig.root().render(ConfigRenderOptions.concise());
-
-        StreamsApiConfiguration combinedDropwizardConfig = null;
-        try {
-            combinedDropwizardConfig = mapper.readValue(combinedConfigJson, StreamsApiConfiguration.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-            LOGGER.error("Invalid Configuration after merge: " + streamsApiConfiguration);
-        }
-
-        return  combinedDropwizardConfig;
-
     }
 
     public static void main(String[] args) throws Exception
