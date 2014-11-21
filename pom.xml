@@ -72,7 +72,9 @@
         <module>datasift-console-elasticsearch</module>
         <module>datasift-instagram-elasticsearch</module>
         <module>datasift-streaming-console</module>
-        <module>datasift-webhook</module>
+        <module>datasift-webhook-elasticsearch</module>
+        <module>datasift-webhook-console</module>
+        <!--<module>datasift-push-kafka</module>-->
         <module>elasticsearch-backup</module>
         <module>elasticsearch-delete</module>
         <module>elasticsearch-delete-from-metadata-file</module>

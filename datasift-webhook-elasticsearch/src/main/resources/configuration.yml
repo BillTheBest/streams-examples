@@ -1,0 +1,41 @@
+template: Hello, %s!
+defaultName: datasift
+
+server:
+  type: simple
+  applicationContextPath: /
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: 8000
+
+logging:
+  level: DEBUG
+  appenders:
+    - type: console
+      threshold: ALL
+      target: stdout
+
+metrics:
+  reporters:
+    - type: console
+      timeZone: UTC
+      output: stdout
+      durationUnit: milliseconds
+      rateUnit: seconds
+      frequency: 120 seconds
+    - type: graphite
+      host: localhost
+      port: 9090
+      prefix: test.prefix
+
+elasticsearch:
+  hosts:
+    - "localhost"
+  port: 9300
+  clusterName: elasticsearch
+  index: datasift_webhook
+  type: activity
+  batchSize: 100
+  forceUseConfig: true
+
