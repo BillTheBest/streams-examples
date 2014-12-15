@@ -18,7 +18,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
-import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by sblackmon on 12/10/13.
@@ -46,8 +45,7 @@ public class DatasiftConsoleElasticsearch {
 
         builder.newPerpetualStream("console", consolePersistReader);
         builder.addStreamsProcessor("converter", datasiftTypeConverter, 1, "console");
-        builder.addStreamsProcessor("CleanAdditionalProperties", new CleanAdditionalPropertiesProcessor(), 3, "converter");
-        builder.addStreamsProcessor("RegexMentionsExtractor", regexMentionsExtractor, 2, "CleanAdditionalProperties");
+        builder.addStreamsProcessor("RegexMentionsExtractor", regexMentionsExtractor, 2, "converter");
         builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, writer, 1, "RegexMentionsExtractor");
         builder.start();
 

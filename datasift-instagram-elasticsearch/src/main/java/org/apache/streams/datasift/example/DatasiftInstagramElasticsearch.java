@@ -12,7 +12,7 @@ import org.apache.streams.datasift.provider.DatasiftStreamProvider;
 import org.apache.streams.elasticsearch.ElasticsearchConfigurator;
 import org.apache.streams.elasticsearch.ElasticsearchPersistWriter;
 import org.apache.streams.elasticsearch.ElasticsearchWriterConfiguration;
-import org.apache.streams.jackson.CleanAdditionalPropertiesProcessor;
+import org.apache.streams.converter.CleanAdditionalPropertiesProcessor;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.apache.streams.pojo.json.Activity;
 import org.apache.streams.regex.RegexMentionsExtractor;
@@ -51,7 +51,6 @@ public class DatasiftInstagramElasticsearch {
 
         builder.newPerpetualStream("stream", stream);
         builder.addStreamsProcessor("converter", datasiftTypeConverter, 2, "stream");
-        builder.addStreamsProcessor("CleanAdditionalProperties", new CleanAdditionalPropertiesProcessor(), 3, "converter");
         builder.addStreamsProcessor("RegexMentionsExtractor", regexMentionsExtractor, 2, "CleanAdditionalProperties");
         builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, writer, 1, "RegexMentionsExtractor");
         builder.start();

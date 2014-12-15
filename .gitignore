@@ -27,3 +27,9 @@ log4j.properties
 Icon?
 ehthumbs.db
 Thumbs.db
+
+# Maven plug-in generated files #
+DEPENDENCIES
+DISCLAIMER
+LICENSE
+NOTICE

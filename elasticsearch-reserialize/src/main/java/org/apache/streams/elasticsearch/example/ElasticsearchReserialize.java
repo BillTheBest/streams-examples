@@ -13,7 +13,6 @@ import org.apache.streams.core.StreamBuilder;
 import org.apache.streams.core.StreamsDatum;
 import org.apache.streams.core.StreamsProcessor;
 import org.apache.streams.elasticsearch.*;
-import org.apache.streams.jackson.CleanAdditionalPropertiesProcessor;
 import org.apache.streams.jackson.StreamsJacksonMapper;
 import org.apache.streams.local.builders.LocalStreamBuilder;
 import org.slf4j.Logger;
@@ -60,8 +59,6 @@ public class ElasticsearchReserialize {
 
         ElasticsearchPersistWriter elasticsearchPersistWriter = new ElasticsearchPersistWriter(elasticsearchDestinationConfiguration);
 
-        CleanAdditionalPropertiesProcessor cleanAdditionalPropertiesProcessor = new CleanAdditionalPropertiesProcessor();
-
         Reserializer reserializer = new Reserializer();
 
         Map<String, Object> streamConfig = Maps.newHashMap();
@@ -69,8 +66,7 @@ public class ElasticsearchReserialize {
         StreamBuilder builder = new LocalStreamBuilder(1000, streamConfig);
 
         builder.newPerpetualStream(ElasticsearchPersistReader.STREAMS_ID, elasticsearchPersistReader);
-        builder.addStreamsProcessor("CleanAdditionalPropertiesProcessor", cleanAdditionalPropertiesProcessor, 2, ElasticsearchPersistReader.STREAMS_ID);
-        builder.addStreamsProcessor(Reserializer.STREAMS_ID, reserializer, 2, "CleanAdditionalPropertiesProcessor");
+        builder.addStreamsProcessor(Reserializer.STREAMS_ID, reserializer, 2, ElasticsearchPersistReader.STREAMS_ID);
         builder.addStreamsPersistWriter(ElasticsearchPersistWriter.STREAMS_ID, elasticsearchPersistWriter, 1, Reserializer.STREAMS_ID);
         builder.start();
 
