@@ -1,15 +1,10 @@
+Apache Streams (incubating)
+Licensed under Apache License 2.0 - http://www.apache.org/licenses/LICENSE-2.0
+--------------------------------------------------------------------------------
+
 streams-examples
 ================
 
-twitter-sample-standalone
--------------------------
+streams-examples contains a collection of ready-to-run applications built upon Apache Streams (incubating)
 
-java -jar target/twitter-sample-standalone-0.1-SNAPSHOT.jar -Dtwitter.follow.0=18055613 -Dtwitter.track.0=test
-
-twitter-firehose-storm
-----------------------
-
-#TODO
-storm jar target/twitter-firehose-storm-0.1-SNAPSHOT.jar
-
-**NOTE:** Refer to individual README files in each example to get a better idea how to run them
+Refer to individual README files in each example to understand what they do and how to run them

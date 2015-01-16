@@ -1,3 +1,7 @@
+Apache Streams (incubating)
+Licensed under Apache License 2.0 - http://www.apache.org/licenses/LICENSE-2.0
+--------------------------------------------------------------------------------
+
 # Perform setup steps to prepare #
 
 [Setup instructions](https://github.com/w2ogroup/streams-examples/tree/master/SETUP.md "Setup")
